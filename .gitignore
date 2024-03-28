@@ -1,0 +1,67 @@
+# 忽略操作系统自动生成的文件
+.DS_Store
+Thumbs.db
+
+# 忽略编译生成的文件或目录
+/build/
+/bin/
+/dist/
+/node_modules/
+/out/
+**/build/
+**/bin/
+**/dist/
+**/node_modules/
+**/out/
+
+# 忽略 IDE 或编辑器生成的文件
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# 忽略日志和临时文件
+*.log
+*.tmp
+
+# 忽略依赖管理文件
+package-lock.json
+yarn.lock
+npm-debug.log
+
+# 忽略配置文件
+.env
+.env.local
+.env.*.local
+
+# 忽略个人的配置文件
+*.secret
+
+# 忽略系统配置文件
+*.conf
+
+# 忽略压缩文件
+*.zip
+*.rar
+*.gz
+*.tar
+*.7z
+
+# 忽略编译过程中生成的文件
+*.o
+*.obj
+
+# 忽略图片缓存和临时图片
+*.DS_Store?
+*.Spotlight-V100
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# 忽略 macOS 相册数据库文件
+*.apdisk
+
+# 忽略 Windows 图片缩略图数据库文件
+[Tt]humbs.db
