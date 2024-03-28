@@ -17,32 +17,47 @@ def chinese_to_pinyin(text):
 def read_txt_file(txt_file):
     data = {}
     with open(txt_file, 'r', encoding='utf-8') as file:
+        classes = file.readline().strip().split()
         next(file)  # Skip header
         for line in file:
             parts = line.strip().split()
             index = parts[0]
-            labels = [chinese_to_pinyin(
-                x) for x in parts[1:] if x != 'Nan' and x != '正常']
+            labels = {key: chinese_to_pinyin(value)
+                      for key, value in zip(classes, parts[1:])}
             data[index] = labels
     return data
 
 
 def create_dataset(csv_file, txt_data, image_dir, output_dir):
-    os.makedirs(output_dir, exist_ok=True)
-    for index, labels in txt_data.items():
-        for label in labels:
-            label_dir = os.path.join(output_dir, label)
-            os.makedirs(label_dir, exist_ok=True)
+    with open(csv_file, 'r') as file:
+        reader = csv.DictReader(file)
+        images = os.listdir(image_dir)
+        for image in images:
+            image_id = image.split('_')[2]
+            for row in reader:
+                if row['id'] == image_id:
+                    for key, value in row.items()[1:]:
+                        temp = txt_data[value][key]
+                        if not os.path.exists(os.path.join(output_dir, temp)):
+                            os.makedirs(os.path.join(output_dir, temp))
+                        ;
 
-            with open(csv_file, 'r') as file:
-                reader = csv.DictReader(file)
-                for row in reader:
-                    if row['id'].startswith('tongue_front_' + index):
-                        image_file = os.path.join(
-                            image_dir, row['id'] + '.jpg')
-                        if os.path.exists(image_file):
-                            os.rename(image_file, os.path.join(
-                                label_dir, row['id'] + '.jpg'))
+    # os.makedirs(output_dir, exist_ok=True)
+    # for index, labels in txt_data.items():
+    #     for key, label in labels.items():
+    #         label_dir = os.path.join(output_dir, label)
+    #         if label != 'Nan' and label != 'zheng_chang':
+    #             os.makedirs(label_dir, exist_ok=True)
+
+    #             with open(csv_file, 'r') as file:
+    #                 reader = csv.DictReader(file)
+    #                 for row in reader:
+    #                     if row['id'].startswith('tongue_front_' + index):
+    #                         image_file = os.path.join(
+    #                             image_dir, row['id'] + '.jpg')
+    #                         if os.path.exists(image_file):
+    #                             os.rename(image_file, os.path.join(
+    #                                 label_dir, row['id'] + '.jpg'))
 
 
 def main():
