@@ -65,3 +65,8 @@ Thumbs.db
 
 # 忽略 Windows 图片缩略图数据库文件
 [Tt]humbs.db
+
+# 忽略隐私文件
+
+*.xlsx
+**/*.xlsx
