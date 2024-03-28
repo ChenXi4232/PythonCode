@@ -95,4 +95,7 @@ Thumbs.db
 *.json
 *.txt
 
-# 忽略
+# 忽略数据集
+
+**/dataset/
+/dataset/
