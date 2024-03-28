@@ -60,6 +60,11 @@ npm-debug.log
 ehthumbs.db
 Thumbs.db
 
+# 忽略图片
+
+*.png
+*.jpg
+
 # 忽略 macOS 相册数据库文件
 *.apdisk
 
@@ -75,7 +80,14 @@ Thumbs.db
 # 忽略模型结果
 
 *.pt
+*.pth
+*.h5
 *.safetensors
+*.bin
+
+# 忽略模型记录
+
+*.ChenXi
 
 # 忽略数据文件
 
