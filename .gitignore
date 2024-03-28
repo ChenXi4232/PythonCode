@@ -71,3 +71,16 @@ Thumbs.db
 *.xlsx
 **/*.xlsx
 **/freshhand
+
+# 忽略模型结果
+
+*.pt
+*.safetensors
+
+# 忽略数据文件
+
+*.csv
+*.json
+*.txt
+
+# 忽略
