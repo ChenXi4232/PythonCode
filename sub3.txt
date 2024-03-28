@@ -1,0 +1,9 @@
+|序号|公式|规则|
+|---|---|---|
+|(1)|(~p &rightarrow; p) &rightarrow; (~p &rightarrow; ~(~p &rightarrow; p))|假定|
+|(2)|(~p &rightarrow; ~(~p &rightarrow; p)) &rightarrow; ((~p &rightarrow; p) &rightarrow; p)|假定|
+|(3)|((~p &rightarrow; ~(~p &rightarrow; p)) &rightarrow; ((~p &rightarrow; p) &rightarrow; p)) &rightarrow; ((~p &rightarrow; p) &rightarrow; ((~p &rightarrow; ~(~p &rightarrow; p)) &rightarrow; ((~p &rightarrow; p) &rightarrow; p)))|L1|
+|(4)|(~p &rightarrow; p) &rightarrow; ((~p &rightarrow; ~(~p &rightarrow; p)) &rightarrow; ((~p &rightarrow; p) &rightarrow; p))|(2), (3), MP|
+|(5)|((~p &rightarrow; p) &rightarrow; ((~p &rightarrow; ~(~p &rightarrow; p)) &rightarrow; ((~p &rightarrow; p) &rightarrow; p))) &rightarrow; (((~p &rightarrow; p) &rightarrow; (~p &rightarrow; ~(~p &rightarrow; p))) &rightarrow; ((~p &rightarrow; p) &rightarrow; ((~p &rightarrow; p) &rightarrow; p)))|L2|
+|(6)|((~p &rightarrow; p) &rightarrow; (~p &rightarrow; ~(~p &rightarrow; p))) &rightarrow; ((~p &rightarrow; p) &rightarrow; ((~p &rightarrow; p) &rightarrow; p))|(4), (5), MP|
+|(7)|(~p &rightarrow; p) &rightarrow; ((~p &rightarrow; p) &rightarrow; p)|(1), (6), MP|
