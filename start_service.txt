@@ -1,0 +1,24 @@
+@echo off
+
+echo "ZLM start"
+start /d "C:\src\vcpkg\installed\x64-windows\tools\zlmediakit\" MediaServer.exe
+
+echo "frontend start"
+echo "nginx Restart"
+taskkill /im nginx.exe
+echo "nginx stop"
+start /d "D:\service\nginx\" nginx.exe
+echo "nginx start"
+
+echo "backend start"
+start cmd /k "cd /d D:\service\server&&java -jar tcm-manage.jar"
+
+echo "voice recorder start"
+start cmd /k "cd /d D:\Audio\venv\Scripts&&.\activate&&cd ..&&cd .."
+
+echo "open web page"
+start "" "http://127.0.0.1:88"
+
+pause
+
+exit
