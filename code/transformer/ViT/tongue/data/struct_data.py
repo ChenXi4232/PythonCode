@@ -1,5 +1,6 @@
 import os
 import csv
+import shutil
 from pypinyin import pinyin, Style
 
 
@@ -17,8 +18,8 @@ def chinese_to_pinyin(text):
 def read_txt_file(txt_file):
     data = {}
     with open(txt_file, 'r', encoding='utf-8') as file:
-        classes = file.readline().strip().split()
-        next(file)  # Skip header
+        classes = file.readline().strip().split()[1:]
+        # next(file)  # Skip header
         for line in file:
             parts = line.strip().split()
             index = parts[0]
@@ -32,15 +33,25 @@ def create_dataset(csv_file, txt_data, image_dir, output_dir):
     with open(csv_file, 'r') as file:
         reader = csv.DictReader(file)
         images = os.listdir(image_dir)
-        for image in images:
-            image_id = image.split('_')[2]
-            for row in reader:
-                if row['id'] == image_id:
-                    for key, value in row.items()[1:]:
-                        temp = txt_data[value][key]
-                        if not os.path.exists(os.path.join(output_dir, temp)):
-                            os.makedirs(os.path.join(output_dir, temp))
-                        ;
+        for row in reader:
+            for image in images:
+                image_id = int(image.split('_')[2])
+                if int(row['id']) == image_id:
+                    for key, value in row.items():
+                        if key != 'id':
+                            if len(value) > 1:
+                                value = eval(value)
+                            else:
+                                value = [value]
+                            for v in value:
+                                temp = txt_data[str(v)][key]
+                                if temp != 'Nan' and temp != 'zheng_chang':
+                                    if not os.path.exists(os.path.join(output_dir, temp)):
+                                        os.makedirs(
+                                            os.path.join(output_dir, temp))
+                                    shutil.copy(os.path.join(image_dir, image),
+                                                os.path.join(output_dir, temp, image))
+                    break
 
     # os.makedirs(output_dir, exist_ok=True)
     # for index, labels in txt_data.items():
