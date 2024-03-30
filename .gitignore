@@ -87,6 +87,8 @@ Thumbs.db
 
 # 忽略模型记录
 
+/logs/
+**/logs/
 *.ChenXi
 
 # 忽略数据文件
