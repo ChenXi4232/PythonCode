@@ -79,6 +79,8 @@ Thumbs.db
 
 # 忽略模型结果
 
+/*checkpoint*/
+**/*checkpoint*/
 *.pt
 *.pth
 *.h5
