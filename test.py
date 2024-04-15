@@ -1,65 +1,39 @@
-def KMP(S, T):
-    nextval_list = get_nextval(T)
-    match_positions = []
-    i, j = 0, 0
-    S_length, T_length = len(S), len(T)
-    while i < S_length:
-        if S[i] == T[j]:
-            i += 1
-            j += 1
-        if j == T_length:
-            match_positions.append(i - len(T))
-            j = nextval_list[j-1]
-        elif i < S_length and S[i] != T[j]:
-            if j != 0:
-                j = nextval_list[j-1]
-            else:
-                i += 1
-    return match_positions
+from pulp import LpProblem, LpMaximize, LpVariable, lpSum, value
 
+num_products = 3
+num_markets = 3
 
-def get_nextval(T):
-    T_length = len(T)
-    nextval_list = [0] * T_length
-    nextval_list[0] = 0
-    i, j = 1, 0
-    while i < T_length:
-        if T[i] == T[j]:
-            j += 1
-            nextval_list[i] = j
-            i += 1
-        else:
-            if j != 0:
-                j = nextval_list[j-1]
-            else:
-                nextval_list[i] = 0
-                i += 1
-    return nextval_list
+prices = [[10, 9, 8], [9, 8, 7], [8, 7, 6]]
 
+products = [chr(65+i) for i in range(num_products)]
+markets = range(1, num_markets+1)
+shifts = range(1, 5)
 
-'''def get_nextval(T):
-    T_length = len(T)
-    nextval_list = [-1] * T_length
-    nextval_list[0] = -1
-    i, j = 0, -1
-    while i < T_length - 1:
-        if j == -1 or T[i] == T[j]:
-            i += 1
-            j += 1
-            if T[i] != T[j]:
-                nextval_list[i] = j
-            else:
-                nextval_list[i] = nextval_list[j]
-        else:
-            i = nextval_list[i]
-    return nextval_list'''
+# 产品数量变量
+production_vars = LpVariable.dicts(
+    "Production", (products, shifts), lowBound=0, cat='Continuous')
 
+# 目标函数
+avg_prices = []
+for p in products:
+    avg_price = 0
+    for m in markets:
+        avg_price += prices[m-1][products.index(p)]
+    avg_price /= num_markets
+    avg_prices.append(avg_price)
 
-S_length, T_length = map(int, input().split())
-S = input()
-T = input()
+expr = lpSum([avg_prices[i] * production_vars[products[i]][s]
+             for i in range(num_products) for s in shifts])
 
-match_positions = KMP(S, T)
-num_matches = len(match_positions)
-print(num_matches)
-print(*match_positions)
+print(expr)
+
+wages = [10, 9, 8, 7]
+
+shifts_times = [8, 4, 8, 4]
+shifts_wages = [wages[i] * shifts_times[i] for i in range(4)]
+shifts_wages = [shifts_wages[0]] + shifts_wages
+
+total_employees = LpVariable.dicts(
+    "E", range(0, 5), lowBound=0, cat='Continuous')
+total_wages = [lpSum([total_employees[s] * shifts_wages[s] for s in range(5)])]
+print(total_wages)

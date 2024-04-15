@@ -12,6 +12,14 @@ from torch.utils.data import DataLoader, random_split
 # import torchvision.transforms.functional as F
 
 
+resume_training = False
+save_dir = './save_state/'
+
+# 创建保存状态的文件夹
+if not os.path.exists(save_dir):
+    os.makedirs(save_dir)
+
+
 # 设置随机种子
 seed = 42
 torch.manual_seed(seed)
@@ -20,6 +28,25 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 stdout_backup = sys.stdout
 sys.stdout = open('output.txt', 'w')
+
+
+def save_checkpoint(epoch, model, optimizer, scheduler):
+    state = {
+        'epoch': epoch,
+        'model_state_dict': model.state_dict(),
+        'optimizer_state_dict': optimizer.state_dict(),
+        'scheduler_state_dict': scheduler.state_dict()
+    }
+    torch.save(state, os.path.join(save_dir, 'checkpoint.pth'))
+
+
+def load_checkpoint(model, optimizer, scheduler):
+    checkpoint = torch.load(os.path.join(save_dir, 'checkpoint.pth'))
+    epoch = checkpoint['epoch']
+    model.load_state_dict(checkpoint['model_state_dict'])
+    optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+    scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
+    return epoch + 1  # 恢复训练时从下一个epoch开始
 
 
 def print_and_write(*args, **kwargs):
@@ -298,11 +325,17 @@ patience_ratio = 0.35
 scheduler = optim.lr_scheduler.CyclicLR(
     optimizer, base_lr=0.1, max_lr=0.6, step_size_up=up_ratio*num_epochs,
     step_size_down=(1-up_ratio)*num_epochs)
+# 加载检查点来恢复训练
+if resume_training and os.path.exists(os.path.join(save_dir, 'checkpoint.pth')):
+    start_epoch = load_checkpoint(model, optimizer, scheduler)
+    print_and_write(f"Resuming training from epoch {start_epoch}")
+else:
+    start_epoch = 0
 
 early_stopping = EarlyStopping(
     patience=patience_ratio*num_epochs, delta=0, path='ResNet9_best_model.pth')
 
-for epoch in range(num_epochs):
+for epoch in range(start_epoch, num_epochs):
     model.train()
     running_loss = 0.0
     for batch_idx, (inputs, labels) in enumerate(trainloader):
@@ -342,6 +375,10 @@ for epoch in range(num_epochs):
 
     scheduler.step()
 
+    # 每隔总轮数的10%进行一次当前模型参数、优化器参数、学习率调度器参数、epoch轮数的保存
+    if (epoch + 1) % (num_epochs // 10) == 0:
+        save_checkpoint(epoch, model, optimizer, scheduler)
+
 # 可视化训练过程中的损失
 plt.plot(train_losses, label='Train Loss')
 plt.plot(val_losses, label='Val Loss')
@@ -370,8 +407,8 @@ with torch.no_grad():
         test_total += labels.size(0)
         test_correct += (predicted == labels).sum().item()
 
-if not os.path.exists('./output'):
-    os.makedirs('./output')
+if not os.path.exists('./output/'):
+    os.makedirs('./output/')
 
 print_and_write(
     f"Test Loss: {test_loss / len(testloader):.4f}, Test Acc: {test_correct / test_total * 100:.2f}%")
@@ -380,14 +417,14 @@ print_and_write(
 sys.stdout.close()
 sys.stdout = stdout_backup
 
-file_name_prefix = 'depth3-2_kernel3-1_dropout0_normData-in_lrCLR0.1-0.6-up0.25'
+file_name_prefix = 'depth3-2_kernel1-0_dropout0_normData-bn_lrCLR0.1-0.6-up0.25'
 
 if os.path.exists('./output/'+file_name_prefix+'.txt'):
     os.remove('./output/'+file_name_prefix+'.txt')
 # Save the output text file to the output directory
 os.rename('output.txt', './output/'+file_name_prefix+'.txt')
 
-if os.path.exists('./output/'+file_name_prefix+'.png'): 
+if os.path.exists('./output/'+file_name_prefix+'.png'):
     os.remove('./output/'+file_name_prefix+'.png')
 # Save the loss plot to the output directory
 os.rename('loss_plot.png', './output/'+file_name_prefix+'.png')
