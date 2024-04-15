@@ -27,15 +27,19 @@ np.random.seed(seed)
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 stdout_backup = sys.stdout
-sys.stdout = open('output.txt', 'w')
+if resume_training is False:
+    sys.stdout = open('output.txt', 'w')
+else:
+    sys.stdout = open('output.txt', 'a')
 
 
-def save_checkpoint(epoch, model, optimizer, scheduler):
+def save_checkpoint(epoch, model, optimizer, scheduler, ES_counter=0):
     state = {
         'epoch': epoch,
         'model_state_dict': model.state_dict(),
         'optimizer_state_dict': optimizer.state_dict(),
-        'scheduler_state_dict': scheduler.state_dict()
+        'scheduler_state_dict': scheduler.state_dict(),
+        'ES_counter': ES_counter
     }
     torch.save(state, os.path.join(save_dir, 'checkpoint.pth'))
 
@@ -43,10 +47,11 @@ def save_checkpoint(epoch, model, optimizer, scheduler):
 def load_checkpoint(model, optimizer, scheduler):
     checkpoint = torch.load(os.path.join(save_dir, 'checkpoint.pth'))
     epoch = checkpoint['epoch']
+    ES_counter = checkpoint['ES_counter']
     model.load_state_dict(checkpoint['model_state_dict'])
     optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
     scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
-    return epoch + 1  # 恢复训练时从下一个epoch开始
+    return epoch + 1, ES_counter  # 恢复训练时从下一个epoch开始
 
 
 def print_and_write(*args, **kwargs):
@@ -83,11 +88,11 @@ class Cutout(object):
 
 
 class EarlyStopping:
-    def __init__(self, patience=5, delta=0, path='checkpoint.pth'):
+    def __init__(self, patience=5, delta=0, path='checkpoint.pth', ES_counter=0):
         self.patience = patience
         self.delta = delta
         self.path = path
-        self.counter = 0
+        self.counter = ES_counter
         self.best_score = None
         self.early_stop = False
         self.val_loss_min = np.Inf
@@ -172,31 +177,31 @@ class BasicBlock(nn.Module):
         super(BasicBlock, self).__init__()
         self.conv1 = nn.Conv2d(
             in_planes, out_planes, kernel_size=3, stride=stride, padding=1, bias=False)
-        # self.bn1 = nn.BatchNorm2d(out_planes)
-        self.in1 = nn.InstanceNorm2d(out_planes)
+        self.bn1 = nn.BatchNorm2d(out_planes)
+        # self.in1 = nn.InstanceNorm2d(out_planes)
         self.conv2 = nn.Conv2d(out_planes, out_planes,
                                kernel_size=3, stride=1, padding=1, bias=False)
-        # self.bn2 = nn.BatchNorm2d(out_planes)
-        self.in2 = nn.InstanceNorm2d(out_planes)
+        self.bn2 = nn.BatchNorm2d(out_planes)
+        # self.in2 = nn.InstanceNorm2d(out_planes)
         # self.celu = nn.CELU(inplace=True)
         self.relu = nn.ReLU(inplace=True)
         self.shortcut = nn.Sequential()
         if stride != 1 or in_planes != out_planes:
             self.shortcut = nn.Sequential(
-                nn.Conv2d(in_planes, out_planes, kernel_size=1,
+                nn.Conv2d(in_planes, out_planes, kernel_size=3,
                           stride=stride, bias=False),
                 nn.BatchNorm2d(out_planes)
             )
 
     def forward(self, x):
         out = self.conv1(x)
-        # out = self.bn1(out)
-        out = self.in1(out)
+        out = self.bn1(out)
+        # out = self.in1(out)
         # out = self.celu(out)
         out = self.relu(out)
         out = self.conv2(out)
-        # out = self.bn2(out)
-        out = self.in2(out)
+        out = self.bn2(out)
+        # out = self.in2(out)
         # out = self.celu(out)
         out = self.relu(out)
         out = torch.add(out, self.shortcut(x))
@@ -209,15 +214,15 @@ class ResNet(nn.Module):
         super(ResNet, self).__init__()
         self.prep = nn.Sequential(
             nn.Conv2d(3, 64, kernel_size=3, stride=1, padding=1),
-            # nn.BatchNorm2d(64),
-            nn.InstanceNorm2d(64),
-            # nn.ReLU(inplace=True),
+            nn.BatchNorm2d(64),
+            # nn.InstanceNorm2d(64),
+            nn.ReLU(inplace=True),
             # nn.CELU(inplace=True)
         )
         self.lay1 = nn.Sequential(
             nn.Conv2d(64, 128, kernel_size=3, stride=1, padding=1),
-            # nn.BatchNorm2d(128),
-            nn.InstanceNorm2d(128),
+            nn.BatchNorm2d(128),
+            # nn.InstanceNorm2d(128),
             # nn.CELU(inplace=True),
             nn.ReLU(inplace=True),
             nn.MaxPool2d(kernel_size=2, stride=2)
@@ -225,16 +230,16 @@ class ResNet(nn.Module):
         self.res1 = BasicBlock(128, 128)
         self.lay2 = nn.Sequential(
             nn.Conv2d(128, 256, kernel_size=3, stride=1, padding=1),
-            # nn.BatchNorm2d(256),
-            nn.InstanceNorm2d(256),
+            nn.BatchNorm2d(256),
+            # nn.InstanceNorm2d(256),
             # nn.CELU(inplace=True),
             nn.ReLU(inplace=True),
             nn.MaxPool2d(kernel_size=2, stride=2)
         )
         self.lay3 = nn.Sequential(
             nn.Conv2d(256, 512, kernel_size=3, stride=1, padding=1),
-            # nn.BatchNorm2d(512),
-            nn.InstanceNorm2d(512),
+            nn.BatchNorm2d(512),
+            # nn.InstanceNorm2d(512),
             # nn.CELU(inplace=True),
             nn.ReLU(inplace=True),
             nn.MaxPool2d(kernel_size=2, stride=2)
@@ -255,8 +260,13 @@ class ResNet(nn.Module):
         #     nn.MaxPool2d(kernel_size=2, stride=2)
         # )
         # self.res3 = BasicBlock(2048, 2048)
+        self.dropout1 = nn.Dropout(0.8)
         self.pool = nn.AdaptiveAvgPool2d((1, 1))
         self.flatten = nn.Flatten()
+        self.fc1 = nn.Linear(512, 512)
+        self.dropout2 = nn.Dropout(0.4)
+        self.fc2 = nn.Linear(512, 512)
+        self.dropout3 = nn.Dropout(0.6)
         self.linear = nn.Linear(512, 10)
 
     def forward(self, x):
@@ -266,11 +276,16 @@ class ResNet(nn.Module):
         out = self.lay2(out)
         out = self.lay3(out)
         out = self.res2(out)
+        out = self.dropout1(out)
         # out = self.lay4(out)
         # out = self.lay5(out)
         # out = self.res3(out)
         out = self.pool(out)
         out = self.flatten(out)
+        out = self.fc1(out)
+        out = self.dropout2(out)
+        out = self.fc2(out)
+        out = self.dropout3(out)
         out = self.linear(out)
         return out
 
@@ -318,6 +333,7 @@ num_epochs = 200
 train_losses = []
 val_losses = []
 val_accuracies = []
+ES_counter = 0
 
 up_ratio = 0.25
 patience_ratio = 0.35
@@ -327,13 +343,13 @@ scheduler = optim.lr_scheduler.CyclicLR(
     step_size_down=(1-up_ratio)*num_epochs)
 # 加载检查点来恢复训练
 if resume_training and os.path.exists(os.path.join(save_dir, 'checkpoint.pth')):
-    start_epoch = load_checkpoint(model, optimizer, scheduler)
+    start_epoch, ES_counter = load_checkpoint(model, optimizer, scheduler)
     print_and_write(f"Resuming training from epoch {start_epoch}")
 else:
     start_epoch = 0
 
-early_stopping = EarlyStopping(
-    patience=patience_ratio*num_epochs, delta=0, path='ResNet9_best_model.pth')
+early_stopping = EarlyStopping(patience=patience_ratio*num_epochs,
+                               delta=0, path='ResNet9_best_model.pth', ES_counter=ES_counter)
 
 for epoch in range(start_epoch, num_epochs):
     model.train()
@@ -366,9 +382,16 @@ for epoch in range(start_epoch, num_epochs):
 
     # 检查是否早停
     early_stopping(val_losses[-1], model)
-    if early_stopping.early_stop:
-        print_and_write("Early stopping")
-        break
+    ES_counter = early_stopping.counter
+    # if early_stopping.early_stop:
+    #     if train_losses[-1] <= 0.5:
+    #         print_and_write("Early stopping")
+    #         break
+    #     else:
+    #         print_and_write(
+    #             "Early stopping is not triggered for not converging. Resetting the counter.")
+    #         early_stopping.early_stop = False
+    #         early_stopping.counter = 0
 
     print_and_write(
         f"Epoch [{epoch+1}/{num_epochs}], Train Loss: {train_losses[-1]:.4f}, Val Loss: {val_losses[-1]:.4f}, Val Acc: {val_accuracies[-1]*100:.2f}%")
@@ -377,13 +400,14 @@ for epoch in range(start_epoch, num_epochs):
 
     # 每隔总轮数的10%进行一次当前模型参数、优化器参数、学习率调度器参数、epoch轮数的保存
     if (epoch + 1) % (num_epochs // 10) == 0:
-        save_checkpoint(epoch, model, optimizer, scheduler)
+        save_checkpoint(epoch, model, optimizer, scheduler, ES_counter)
 
 # 可视化训练过程中的损失
 plt.plot(train_losses, label='Train Loss')
 plt.plot(val_losses, label='Val Loss')
 plt.xlabel('Epoch')
 plt.ylabel('Loss')
+plt.title("Training and Validation Loss")
 plt.legend()
 plt.savefig('loss_plot.png')
 plt.show()
@@ -417,7 +441,7 @@ print_and_write(
 sys.stdout.close()
 sys.stdout = stdout_backup
 
-file_name_prefix = 'depth3-2_kernel1-0_dropout0_normData-bn_lrCLR0.1-0.6-up0.25'
+file_name_prefix = 'depth3-2_kernel3-1_dropout3-0.8_normData-bn_lrCLR0.1-0.6-up0.25'
 
 if os.path.exists('./output/'+file_name_prefix+'.txt'):
     os.remove('./output/'+file_name_prefix+'.txt')
