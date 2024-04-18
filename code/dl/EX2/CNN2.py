@@ -9,6 +9,7 @@ from torchvision.transforms import AutoAugmentPolicy
 import matplotlib.pyplot as plt
 import numpy as np
 from torch.utils.data import DataLoader, random_split
+
 # import torchvision.transforms.functional as F
 
 
@@ -21,7 +22,7 @@ if not os.path.exists(save_dir):
 
 
 # 设置随机种子
-seed = 42
+seed = 0
 torch.manual_seed(seed)
 np.random.seed(seed)
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -155,12 +156,13 @@ std_CIFAR10 = data.std(axis=(0, 1, 2))
 # 定义数据增强的transform
 transform_train = transforms.Compose([
     transforms.RandomHorizontalFlip(),
+    transforms.Resize((224, 224)),
     transforms.ColorJitter(brightness=0.2, contrast=0.2,
                            saturation=0.2, hue=0.1),
     transforms.RandomApply([transforms.GaussianBlur(kernel_size=3)], p=0.5),
     transforms.RandomApply([transforms.RandomRotation(10)], p=0.5),
     transforms.RandomCrop(32, padding=4),
-    Cutout(n_holes=1, length=16),
+    Cutout(n_holes=8, length=32),
     transforms.ToTensor(),
     transforms.Normalize(mean=mean_CIFAR10, std=std_CIFAR10),
     transforms.AutoAugment(policy=AutoAugmentPolicy.CIFAR10)
@@ -264,47 +266,50 @@ class ResNet(nn.Module):
             nn.MaxPool2d(kernel_size=2, stride=2)
         )
         self.res2 = BasicBlock(512, 512)
-        # self.lay4 = nn.Sequential(
-        #     nn.Conv2d(512, 1024, kernel_size=3, stride=1, padding=1),
-        #     nn.BatchNorm2d(1024),
-        #     # nn.CELU(inplace=True),
-        #     nn.ReLU(inplace=True),
-        #     nn.MaxPool2d(kernel_size=2, stride=2)
-        # )
-        # self.lay5 = nn.Sequential(
-        #     nn.Conv2d(1024, 2048, kernel_size=3, stride=1, padding=1),
-        #     nn.BatchNorm2d(2048),
-        #     # nn.CELU(inplace=True),
-        #     nn.ReLU(inplace=True),
-        #     nn.MaxPool2d(kernel_size=2, stride=2)
-        # )
-        # self.res3 = BasicBlock(2048, 2048)
-        # self.dropout1 = nn.Dropout(0.8)
+        self.lay4 = nn.Sequential(
+            nn.Conv2d(512, 1024, kernel_size=3, stride=1, padding=1),
+            nn.BatchNorm2d(1024),
+            # nn.CELU(inplace=True),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=2, stride=2)
+        )
+        self.lay5 = nn.Sequential(
+            nn.Conv2d(1024, 2048, kernel_size=3, stride=1, padding=1),
+            nn.BatchNorm2d(2048),
+            # nn.CELU(inplace=True),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=2, stride=2)
+        )
+        self.res3 = BasicBlock(2048, 2048)
+        self.dropout1 = nn.Dropout(0.6)
         self.pool = nn.AdaptiveAvgPool2d((1, 1))
         self.flatten = nn.Flatten()
         self.fc1 = nn.Linear(512, 512)
-        # self.dropout2 = nn.Dropout(0.4)
+        self.dropout2 = nn.Dropout(0.4)
         self.fc2 = nn.Linear(512, 512)
-        # self.dropout3 = nn.Dropout(0.6)
-        self.linear = nn.Linear(512, 10)
+        self.dropout3 = nn.Dropout(0.6)
+        self.linear = nn.Linear(128, 10)
+        self.relu = nn.ReLU(inplace=True)
 
     def forward(self, x):
         out = self.prep(x)
         out = self.lay1(out)
         out = self.res1(out)
-        out = self.lay2(out)
-        out = self.lay3(out)
-        out = self.res2(out)
-        # out = self.dropout1(out)
+        # out = self.lay2(out)
+        # out = self.lay3(out)
+        # out = self.res2(out)
         # out = self.lay4(out)
         # out = self.lay5(out)
         # out = self.res3(out)
+        out = self.dropout1(out)
         out = self.pool(out)
         out = self.flatten(out)
-        out = self.fc1(out)
+        # out = self.fc1(out)
         # out = self.dropout2(out)
-        out = self.fc2(out)
+        # out = self.relu(out)
+        # out = self.fc2(out)
         # out = self.dropout3(out)
+        # out = self.relu(out)
         out = self.linear(out)
         return out
 
@@ -313,6 +318,7 @@ class ResNet(nn.Module):
 
 # 实例化模型
 model = ResNet().to(device)
+
 
 # 定义损失函数和优化器
 criterion = nn.CrossEntropyLoss()
@@ -466,7 +472,7 @@ print_and_write(
 sys.stdout.close()
 sys.stdout = stdout_backup
 
-file_name_prefix = 'depth3-2_kernel3-1_dropout0-0_normData-bn_lrCLR0.1-0.6-up0.25'
+file_name_prefix = 'depth2-1_kernel3-1_dropout1-0.6_normData-bn_lrCLR0.1-0.6-up0.25_Aug'
 
 if os.path.exists('./output/'+file_name_prefix+'.txt'):
     os.remove('./output/'+file_name_prefix+'.txt')
