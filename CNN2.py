@@ -462,8 +462,8 @@ with torch.no_grad():
         test_total += labels.size(0)
         test_correct += (predicted == labels).sum().item()
 
-if not os.path.exists('./ul_output/'):
-    os.makedirs('./ul_output/')
+if not os.path.exists('./output/'):
+    os.makedirs('./output/')
 
 print_and_write(
     f"Test Loss: {test_loss / len(testloader):.4f}, Test Acc: {test_correct / test_total * 100:.2f}%")
@@ -474,12 +474,12 @@ sys.stdout = stdout_backup
 
 file_name_prefix = 'depth2-1_kernel3-1_dropout1-0.6_normData-bn_lrCLR0.1-0.6-up0.25_Aug'
 
-if os.path.exists('./ul_output/'+file_name_prefix+'.txt'):
-    os.remove('./ul_output/'+file_name_prefix+'.txt')
+if os.path.exists('./output/'+file_name_prefix+'.txt'):
+    os.remove('./output/'+file_name_prefix+'.txt')
 # Save the output text file to the output directory
-os.rename('output.txt', './ul_output/'+file_name_prefix+'.txt')
+os.rename('output.txt', './output/'+file_name_prefix+'.txt')
 
-if os.path.exists('./ul_output/'+file_name_prefix+'.png'):
-    os.remove('./ul_output/'+file_name_prefix+'.png')
+if os.path.exists('./output/'+file_name_prefix+'.png'):
+    os.remove('./output/'+file_name_prefix+'.png')
 # Save the loss plot to the output directory
-os.rename('loss_plot.png', './ul_output/'+file_name_prefix+'.png')
+os.rename('loss_plot.png', './output/'+file_name_prefix+'.png')
