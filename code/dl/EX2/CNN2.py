@@ -9,7 +9,7 @@ from torchvision.transforms import AutoAugmentPolicy
 import matplotlib.pyplot as plt
 import numpy as np
 from torch.utils.data import DataLoader, random_split
-
+from torchsummary import summary
 # import torchvision.transforms.functional as F
 
 
@@ -156,12 +156,12 @@ std_CIFAR10 = data.std(axis=(0, 1, 2))
 # 定义数据增强的transform
 transform_train = transforms.Compose([
     transforms.RandomHorizontalFlip(),
+    transforms.RandomCrop(32, padding=4),
     transforms.Resize((224, 224)),
     transforms.ColorJitter(brightness=0.2, contrast=0.2,
                            saturation=0.2, hue=0.1),
     transforms.RandomApply([transforms.GaussianBlur(kernel_size=3)], p=0.5),
     transforms.RandomApply([transforms.RandomRotation(10)], p=0.5),
-    transforms.RandomCrop(32, padding=4),
     Cutout(n_holes=8, length=32),
     transforms.ToTensor(),
     transforms.Normalize(mean=mean_CIFAR10, std=std_CIFAR10),
@@ -318,7 +318,7 @@ class ResNet(nn.Module):
 
 # 实例化模型
 model = ResNet().to(device)
-
+summary(model, (3, 224, 224))
 
 # 定义损失函数和优化器
 criterion = nn.CrossEntropyLoss()

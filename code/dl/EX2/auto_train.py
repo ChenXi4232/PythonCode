@@ -92,7 +92,7 @@ remove_comments('CNN2.py', 298, 300)
 modify_line('CNN2.py', 291, '        self.linear = nn.Linear(512, 10)')
 replace_in_file('CNN2.py', 'kernel_size=3', 'kernel_size=1')
 replace_in_file('CNN2.py', 'padding=1', 'padding=0')
-modify_line('CNN2.py', 162,
+modify_line('CNN2.py', 163,
             '    transforms.RandomApply([transforms.GaussianBlur(kernel_size=3)], p=0.5),')
 modify_line('CNN2.py', 475,
             'file_name_prefix = \'depth3-2_kernel1-0_dropout1-0.6_normData-bn_lrCLR0.1-0.6-up0.25_Aug\'')
@@ -103,6 +103,7 @@ execute_git_commands_in_directory(directory, git_commands)
 depth3-2_kernel3-1_dropout1-0.6_normData-bn_lrC0.1_Aug
 '''
 
+replace_in_file('CNN2.py', 'batch_size=768', 'batch_size=128')
 replace_in_file('CNN2.py', 'kernel_size=1', 'kernel_size=3')
 replace_in_file('CNN2.py', 'padding=0', 'padding=1')
 add_comments('CNN2.py', 37, 45)
@@ -123,6 +124,7 @@ execute_git_commands_in_directory(directory, git_commands)
 depth3-2_kernel3-1_dropout1-0.6_normData-bn_lrCLR0.1-0.6-up0.25_Aug
 '''
 
+replace_in_file('CNN2.py', 'batch_size=128', 'batch_size=768')
 remove_comments('CNN2.py', 37, 45)
 add_comments('CNN2.py', 48, 55)
 remove_comments('CNN2.py', 58, 65)
@@ -141,6 +143,7 @@ execute_git_commands_in_directory(directory, git_commands)
 depth3-2_kernel3-1_dropout1-0.6_normData-bn_lrStep0.2-0.5_Aug
 '''
 
+replace_in_file('CNN2.py', 'batch_size=768', 'batch_size=128')
 remove_comments('CNN2.py', 367, 368)
 add_comments('CNN2.py', 370, 372)
 modify_line('CNN2.py', 475,
@@ -152,6 +155,7 @@ execute_git_commands_in_directory(directory, git_commands)
 depth3-2_kernel3-1_dropout1-0.6_normData-in_lrCLR0.1-0.6-up0.25_Aug
 '''
 
+replace_in_file('CNN2.py', 'batch_size=128', 'batch_size=768')
 replace_in_file('CNN2.py', 'nn.BatchNorm2d', 'nn.InstanceNorm2d')
 add_comments('CNN2.py', 367, 368)
 remove_comments('CNN2.py', 370, 372)
@@ -259,7 +263,7 @@ add_comments('CNN2.py', 310, 311)
 modify_line('CNN2.py', 284, '        self.dropout1 = nn.Dropout(0.6)')
 replace_in_file('CNN2.py', 'kernel_size=3', 'kernel_size=5')
 replace_in_file('CNN2.py', 'padding=1', 'padding=2')
-modify_line('CNN2.py', 162,
+modify_line('CNN2.py', 163,
             '    transforms.RandomApply([transforms.GaussianBlur(kernel_size=3)], p=0.5),')
 modify_line('CNN2.py', 475,
             'file_name_prefix = \'depth3-2_kernel5-2_dropout1-0.6_normData-bn_lrCLR0.1-0.6-up0.25_Aug\'')
