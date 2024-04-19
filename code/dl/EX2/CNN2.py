@@ -441,7 +441,7 @@ plt.ylabel('Loss')
 plt.title("Training and Validation Loss")
 plt.legend()
 plt.savefig('loss_plot.png')
-plt.show()
+# plt.show()
 
 # 在训练结束后加载最佳模型
 model.load_state_dict(torch.load('ResNet9_best_model.pth'))
