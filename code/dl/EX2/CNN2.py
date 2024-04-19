@@ -164,13 +164,13 @@ transform_train = transforms.Compose([
     transforms.RandomApply([transforms.RandomRotation(10)], p=0.5),
     Cutout(n_holes=8, length=32),
     transforms.ToTensor(),
-#     transforms.Normalize(mean=mean_CIFAR10, std=std_CIFAR10),
+    transforms.Normalize(mean=mean_CIFAR10, std=std_CIFAR10),
     transforms.AutoAugment(policy=AutoAugmentPolicy.CIFAR10)
 ])
 
 transform = transforms.Compose([
     transforms.ToTensor(),
-#     transforms.Normalize(mean=mean_CIFAR10, std=std_CIFAR10)
+    transforms.Normalize(mean=mean_CIFAR10, std=std_CIFAR10)
 ])
 
 # 划分训练集和验证集
@@ -301,13 +301,13 @@ class ResNet(nn.Module):
         # out = self.lay4(out)
         # out = self.lay5(out)
         # out = self.res3(out)
-        out = self.dropout1(out)
+#         out = self.dropout1(out)
         out = self.pool(out)
         out = self.flatten(out)
-        # out = self.fc1(out)
+        out = self.fc1(out)
         # out = self.dropout2(out)
         # out = self.relu(out)
-        # out = self.fc2(out)
+        out = self.fc2(out)
         # out = self.dropout3(out)
         # out = self.relu(out)
         out = self.linear(out)
@@ -472,7 +472,7 @@ print_and_write(
 sys.stdout.close()
 sys.stdout = stdout_backup
 
-file_name_prefix = 'depth3-2_kernel3-1_dropout1-0.6_NotnormData-bn_lrCLR0.1-0.6-up0.25_Aug'
+file_name_prefix = 'depth3-2_kernel3-1_dropout0-0_normData-bn_lrCLR0.1-0.6-up0.25_Aug'
 
 if os.path.exists('./ul_output/'+file_name_prefix+'.txt'):
     os.remove('./ul_output/'+file_name_prefix+'.txt')
