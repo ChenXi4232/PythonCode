@@ -183,9 +183,9 @@ val_dataset.dataset.transform = transform
 testset.transform = transform
 
 # 创建数据加载器
-trainloader = DataLoader(train_dataset, batch_size=768, shuffle=True)
-valloader = DataLoader(val_dataset, batch_size=768, shuffle=False)
-testloader = DataLoader(testset, batch_size=768, shuffle=False)
+trainloader = DataLoader(train_dataset, batch_size=128, shuffle=True)
+valloader = DataLoader(val_dataset, batch_size=128, shuffle=False)
+testloader = DataLoader(testset, batch_size=128, shuffle=False)
 
 # 定义类别标签
 classes = ('plane', 'car', 'bird', 'cat', 'deer',
@@ -364,12 +364,12 @@ up_ratio = 0.25
 patience_ratio = 0.35
 step_ratio = 0.2
 
-# scheduler = optim.lr_scheduler.StepLR(
-#     optimizer, step_size=step_ratio*num_epochs, gamma=0.5)
+scheduler = optim.lr_scheduler.StepLR(
+    optimizer, step_size=step_ratio*num_epochs, gamma=0.5)
 
-scheduler = optim.lr_scheduler.CyclicLR(
-    optimizer, base_lr=0.1, max_lr=0.6, step_size_up=up_ratio*num_epochs,
-    step_size_down=(1-up_ratio)*num_epochs)
+# scheduler = optim.lr_scheduler.CyclicLR(
+#     optimizer, base_lr=0.1, max_lr=0.6, step_size_up=up_ratio*num_epochs,
+#     step_size_down=(1-up_ratio)*num_epochs)
 # 加载检查点来恢复训练
 if resume_training and os.path.exists(os.path.join(save_dir, 'checkpoint.pth')):
     start_epoch, ES_counter = load_checkpoint(model, optimizer, scheduler)
@@ -472,7 +472,7 @@ print_and_write(
 sys.stdout.close()
 sys.stdout = stdout_backup
 
-file_name_prefix = 'depth3-2_kernel3-1_dropout1-0.6_normData-bn_lrCLR0.1-0.6-up0.25_Aug'
+file_name_prefix = 'depth3-2_kernel3-1_dropout1-0.6_normData-bn_lrStep0.2-0.5_Aug'
 
 if os.path.exists('./ul_output/'+file_name_prefix+'.txt'):
     os.remove('./ul_output/'+file_name_prefix+'.txt')
