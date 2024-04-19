@@ -277,6 +277,7 @@ depth5-3_kernel3-1_dropout1-0.6_normData-bn_lrCLR0.1-0.6-up0.25_Aug
 replace_in_file('CNN2.py', 'kernel_size=5', 'kernel_size=3')
 replace_in_file('CNN2.py', 'padding=2', 'padding=1')
 remove_comments('CNN2.py', 301, 303)
+modify_line('CNN2.py', 291, '        self.linear = nn.Linear(2048, 10)')
 modify_line('CNN2.py', 475,
             'file_name_prefix = \'depth5-3_kernel3-1_dropout1-0.6_normData-bn_lrCLR0.1-0.6-up0.25_Aug\'')
 os.system('python CNN2.py')
@@ -289,6 +290,7 @@ depth3-2_kernel3-1_dropout1-0.6_normData-bn_lrCLR0.1-0.6-up0.25_NotAug
 add_comments('CNN2.py', 301, 303)
 add_comments('CNN2.py', 158, 165)
 add_comments('CNN2.py', 168, 168)
+modify_line('CNN2.py', 291, '        self.linear = nn.Linear(512, 10)')
 modify_line('CNN2.py', 475,
             'file_name_prefix = \'depth3-2_kernel3-1_dropout1-0.6_normData-bn_lrCLR0.1-0.6-up0.25_NotAug\'')
 os.system('python CNN2.py')
