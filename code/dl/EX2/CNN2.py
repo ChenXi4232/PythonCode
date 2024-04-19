@@ -164,13 +164,13 @@ transform_train = transforms.Compose([
     transforms.RandomApply([transforms.RandomRotation(10)], p=0.5),
     Cutout(n_holes=8, length=32),
     transforms.ToTensor(),
-    transforms.Normalize(mean=mean_CIFAR10, std=std_CIFAR10),
+#     transforms.Normalize(mean=mean_CIFAR10, std=std_CIFAR10),
     transforms.AutoAugment(policy=AutoAugmentPolicy.CIFAR10)
 ])
 
 transform = transforms.Compose([
     transforms.ToTensor(),
-    transforms.Normalize(mean=mean_CIFAR10, std=std_CIFAR10)
+#     transforms.Normalize(mean=mean_CIFAR10, std=std_CIFAR10)
 ])
 
 # 划分训练集和验证集
@@ -216,12 +216,12 @@ class BasicBlock(nn.Module):
 
     def forward(self, x):
         out = self.conv1(x)
-#         out = self.bn1(out)
+        out = self.bn1(out)
         # out = self.in1(out)
         # out = self.celu(out)
         out = self.relu(out)
         out = self.conv2(out)
-#         out = self.bn2(out)
+        out = self.bn2(out)
         # out = self.in2(out)
         # out = self.celu(out)
         out = self.relu(out)
@@ -235,14 +235,14 @@ class ResNet(nn.Module):
         super(ResNet, self).__init__()
         self.prep = nn.Sequential(
             nn.Conv2d(3, 64, kernel_size=3, stride=1, padding=1),
-#             nn.BatchNorm2d(64),
+            nn.BatchNorm2d(64),
             # nn.BatchNorm2d(64),
             nn.ReLU(inplace=True),
             # nn.CELU(inplace=True)
         )
         self.lay1 = nn.Sequential(
             nn.Conv2d(64, 128, kernel_size=3, stride=1, padding=1),
-#             nn.BatchNorm2d(128),
+            nn.BatchNorm2d(128),
             # nn.BatchNorm2d(128),
             # nn.CELU(inplace=True),
             nn.ReLU(inplace=True),
@@ -251,7 +251,7 @@ class ResNet(nn.Module):
         self.res1 = BasicBlock(128, 128)
         self.lay2 = nn.Sequential(
             nn.Conv2d(128, 256, kernel_size=3, stride=1, padding=1),
-#             nn.BatchNorm2d(256),
+            nn.BatchNorm2d(256),
             # nn.BatchNorm2d(256),
             # nn.CELU(inplace=True),
             nn.ReLU(inplace=True),
@@ -259,7 +259,7 @@ class ResNet(nn.Module):
         )
         self.lay3 = nn.Sequential(
             nn.Conv2d(256, 512, kernel_size=3, stride=1, padding=1),
-#             nn.BatchNorm2d(512),
+            nn.BatchNorm2d(512),
             # nn.BatchNorm2d(512),
             # nn.CELU(inplace=True),
             nn.ReLU(inplace=True),
@@ -472,7 +472,7 @@ print_and_write(
 sys.stdout.close()
 sys.stdout = stdout_backup
 
-file_name_prefix = 'depth3-2_kernel3-1_dropout1-0.6_normData-Notn_lrCLR0.1-0.6-up0.25_Aug'
+file_name_prefix = 'depth3-2_kernel3-1_dropout1-0.6_NotnormData-bn_lrCLR0.1-0.6-up0.25_Aug'
 
 if os.path.exists('./ul_output/'+file_name_prefix+'.txt'):
     os.remove('./ul_output/'+file_name_prefix+'.txt')
