@@ -34,35 +34,25 @@ else:
     sys.stdout = open('output.txt', 'a')
 
 
-# def save_checkpoint(epoch, model, optimizer, scheduler, ES_counter=0):
-#     state = {
-#         'epoch': epoch,
-#         'model_state_dict': model.state_dict(),
-#         'optimizer_state_dict': optimizer.state_dict(),
-#         'scheduler_state_dict': scheduler.state_dict(),
-#         'ES_counter': ES_counter
-#     }
-#     torch.save(state, os.path.join(save_dir, 'checkpoint.pth'))
-
-
-def save_checkpoint(epoch, model, optimizer, ES_counter=0):
+def save_checkpoint(epoch, model, optimizer, scheduler, ES_counter=0):
     state = {
         'epoch': epoch,
         'model_state_dict': model.state_dict(),
         'optimizer_state_dict': optimizer.state_dict(),
+        'scheduler_state_dict': scheduler.state_dict(),
         'ES_counter': ES_counter
     }
     torch.save(state, os.path.join(save_dir, 'checkpoint.pth'))
 
 
-# def load_checkpoint(model, optimizer, scheduler):
-#     checkpoint = torch.load(os.path.join(save_dir, 'checkpoint.pth'))
-#     epoch = checkpoint['epoch']
-#     ES_counter = checkpoint['ES_counter']
-#     model.load_state_dict(checkpoint['model_state_dict'])
-#     optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-#     scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
-#     return epoch + 1, ES_counter  # 恢复训练时从下一个epoch开始
+# def save_checkpoint(epoch, model, optimizer, ES_counter=0):
+#     state = {
+#         'epoch': epoch,
+#         'model_state_dict': model.state_dict(),
+#         'optimizer_state_dict': optimizer.state_dict(),
+#         'ES_counter': ES_counter
+#     }
+#     torch.save(state, os.path.join(save_dir, 'checkpoint.pth'))
 
 
 def load_checkpoint(model, optimizer, scheduler):
@@ -71,7 +61,17 @@ def load_checkpoint(model, optimizer, scheduler):
     ES_counter = checkpoint['ES_counter']
     model.load_state_dict(checkpoint['model_state_dict'])
     optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+    scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
     return epoch + 1, ES_counter  # 恢复训练时从下一个epoch开始
+
+
+# def load_checkpoint(model, optimizer, scheduler):
+#     checkpoint = torch.load(os.path.join(save_dir, 'checkpoint.pth'))
+#     epoch = checkpoint['epoch']
+#     ES_counter = checkpoint['ES_counter']
+#     model.load_state_dict(checkpoint['model_state_dict'])
+#     optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+#     return epoch + 1, ES_counter  # 恢复训练时从下一个epoch开始
 
 
 def print_and_write(*args, **kwargs):
@@ -183,9 +183,9 @@ val_dataset.dataset.transform = transform
 testset.transform = transform
 
 # 创建数据加载器
-trainloader = DataLoader(train_dataset, batch_size=128, shuffle=True)
-valloader = DataLoader(val_dataset, batch_size=128, shuffle=False)
-testloader = DataLoader(testset, batch_size=128, shuffle=False)
+trainloader = DataLoader(train_dataset, batch_size=768, shuffle=True)
+valloader = DataLoader(val_dataset, batch_size=768, shuffle=False)
+testloader = DataLoader(testset, batch_size=768, shuffle=False)
 
 # 定义类别标签
 classes = ('plane', 'car', 'bird', 'cat', 'deer',
@@ -367,13 +367,13 @@ step_ratio = 0.2
 # scheduler = optim.lr_scheduler.StepLR(
 #     optimizer, step_size=step_ratio*num_epochs, gamma=0.5)
 
-# scheduler = optim.lr_scheduler.CyclicLR(
-#     optimizer, base_lr=0.1, max_lr=0.6, step_size_up=up_ratio*num_epochs,
-#     step_size_down=(1-up_ratio)*num_epochs)
+scheduler = optim.lr_scheduler.CyclicLR(
+    optimizer, base_lr=0.1, max_lr=0.6, step_size_up=up_ratio*num_epochs,
+    step_size_down=(1-up_ratio)*num_epochs)
 # 加载检查点来恢复训练
 if resume_training and os.path.exists(os.path.join(save_dir, 'checkpoint.pth')):
-#     start_epoch, ES_counter = load_checkpoint(model, optimizer, scheduler)
-    start_epoch, ES_counter = load_checkpoint(model, optimizer)
+    start_epoch, ES_counter = load_checkpoint(model, optimizer, scheduler)
+#     start_epoch, ES_counter = load_checkpoint(model, optimizer)
     print_and_write(f"Resuming training from epoch {start_epoch}")
 else:
     start_epoch = 0
@@ -430,8 +430,8 @@ for epoch in range(start_epoch, num_epochs):
 
     # 每隔总轮数的10%进行一次当前模型参数、优化器参数、学习率调度器参数、epoch轮数的保存
     if (epoch + 1) % (num_epochs // 10) == 0:
-#         save_checkpoint(epoch, model, optimizer, scheduler, ES_counter)
-        save_checkpoint(epoch, model, optimizer, ES_counter)
+        save_checkpoint(epoch, model, optimizer, scheduler, ES_counter)
+#         save_checkpoint(epoch, model, optimizer, ES_counter)
 
 # 可视化训练过程中的损失
 plt.plot(train_losses, label='Train Loss')
@@ -472,7 +472,7 @@ print_and_write(
 sys.stdout.close()
 sys.stdout = stdout_backup
 
-file_name_prefix = 'depth3-2_kernel3-1_dropout1-0.6_normData-bn_lrC0.1_Aug'
+file_name_prefix = 'depth3-2_kernel3-1_dropout1-0.6_normData-bn_lrCLR0.1-0.6-up0.25_Aug'
 
 if os.path.exists('./ul_output/'+file_name_prefix+'.txt'):
     os.remove('./ul_output/'+file_name_prefix+'.txt')
