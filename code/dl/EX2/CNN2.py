@@ -281,7 +281,7 @@ class ResNet(nn.Module):
             nn.MaxPool2d(kernel_size=2, stride=2)
         )
         self.res3 = BasicBlock(2048, 2048)
-        self.dropout1 = nn.Dropout(0.4)
+        self.dropout1 = nn.Dropout(0.6)
         self.pool = nn.AdaptiveAvgPool2d((1, 1))
         self.flatten = nn.Flatten()
         self.fc1 = nn.Linear(512, 512)
@@ -472,7 +472,7 @@ print_and_write(
 sys.stdout.close()
 sys.stdout = stdout_backup
 
-file_name_prefix = 'depth3-2_kernel3-1_dropout3-0.4_normData-bn_lrCLR0.1-0.6-up0.25_Aug'
+file_name_prefix = 'depth3-2_kernel3-1_dropout3-0.6_normData-bn_lrCLR0.1-0.6-up0.25_Aug'
 
 if os.path.exists('./ul_output/'+file_name_prefix+'.txt'):
     os.remove('./ul_output/'+file_name_prefix+'.txt')
