@@ -198,11 +198,11 @@ class BasicBlock(nn.Module):
     def __init__(self, in_planes, out_planes, stride=1):
         super(BasicBlock, self).__init__()
         self.conv1 = nn.Conv2d(
-            in_planes, out_planes, kernel_size=5, stride=stride, padding=2, bias=False)
+            in_planes, out_planes, kernel_size=3, stride=stride, padding=1, bias=False)
         self.bn1 = nn.BatchNorm2d(out_planes)
         # self.in1 = nn.BatchNorm2d(out_planes)
         self.conv2 = nn.Conv2d(out_planes, out_planes,
-                               kernel_size=5, stride=1, padding=2, bias=False)
+                               kernel_size=3, stride=1, padding=1, bias=False)
         self.bn2 = nn.BatchNorm2d(out_planes)
         # self.in2 = nn.BatchNorm2d(out_planes)
         # self.celu = nn.CELU(inplace=True)
@@ -210,7 +210,7 @@ class BasicBlock(nn.Module):
         self.shortcut = nn.Sequential()
         if stride != 1 or in_planes != out_planes:
             self.shortcut = nn.Sequential(
-                nn.Conv2d(in_planes, out_planes, kernel_size=5,
+                nn.Conv2d(in_planes, out_planes, kernel_size=3,
                           stride=stride, bias=False),
                 nn.BatchNorm2d(out_planes)
             )
@@ -235,14 +235,14 @@ class ResNet(nn.Module):
     def __init__(self):
         super(ResNet, self).__init__()
         self.prep = nn.Sequential(
-            nn.Conv2d(3, 64, kernel_size=5, stride=1, padding=2),
+            nn.Conv2d(3, 64, kernel_size=3, stride=1, padding=1),
             nn.BatchNorm2d(64),
             # nn.BatchNorm2d(64),
             nn.ReLU(inplace=True),
             # nn.CELU(inplace=True)
         )
         self.lay1 = nn.Sequential(
-            nn.Conv2d(64, 128, kernel_size=5, stride=1, padding=2),
+            nn.Conv2d(64, 128, kernel_size=3, stride=1, padding=1),
             nn.BatchNorm2d(128),
             # nn.BatchNorm2d(128),
             # nn.CELU(inplace=True),
@@ -251,7 +251,7 @@ class ResNet(nn.Module):
         )
         self.res1 = BasicBlock(128, 128)
         self.lay2 = nn.Sequential(
-            nn.Conv2d(128, 256, kernel_size=5, stride=1, padding=2),
+            nn.Conv2d(128, 256, kernel_size=3, stride=1, padding=1),
             nn.BatchNorm2d(256),
             # nn.BatchNorm2d(256),
             # nn.CELU(inplace=True),
@@ -259,7 +259,7 @@ class ResNet(nn.Module):
             nn.MaxPool2d(kernel_size=2, stride=2)
         )
         self.lay3 = nn.Sequential(
-            nn.Conv2d(256, 512, kernel_size=5, stride=1, padding=2),
+            nn.Conv2d(256, 512, kernel_size=3, stride=1, padding=1),
             nn.BatchNorm2d(512),
             # nn.BatchNorm2d(512),
             # nn.CELU(inplace=True),
@@ -268,14 +268,14 @@ class ResNet(nn.Module):
         )
         self.res2 = BasicBlock(512, 512)
         self.lay4 = nn.Sequential(
-            nn.Conv2d(512, 1024, kernel_size=5, stride=1, padding=2),
+            nn.Conv2d(512, 1024, kernel_size=3, stride=1, padding=1),
             nn.BatchNorm2d(1024),
             # nn.CELU(inplace=True),
             nn.ReLU(inplace=True),
             nn.MaxPool2d(kernel_size=2, stride=2)
         )
         self.lay5 = nn.Sequential(
-            nn.Conv2d(1024, 2048, kernel_size=5, stride=1, padding=2),
+            nn.Conv2d(1024, 2048, kernel_size=3, stride=1, padding=1),
             nn.BatchNorm2d(2048),
             # nn.CELU(inplace=True),
             nn.ReLU(inplace=True),
@@ -298,9 +298,9 @@ class ResNet(nn.Module):
         out = self.res1(out)
         out = self.lay2(out)
         out = self.lay3(out)
-        out = self.res2(out)
-        # out = self.lay4(out)
-        # out = self.lay5(out)
+        out = self.res2(out)       out = self.res2(out)
+        out = self.lay4(out)
+        out = self.lay5(out)
         # out = self.res3(out)
         out = self.dropout1(out)
         out = self.pool(out)
@@ -472,7 +472,7 @@ print_and_write(
 # Restoring stdout
 sys.stdout.close()
 sys.stdout = stdout_backup
-
+file_name_prefix = 'depth5-3_kernel3-1_dropout1-0.6_normData-bn_lrCLR0.1-0.6-up0.25_Aug'
 file_name_prefix = 'depth3-2_kernel5-2_dropout1-0.6_normData-bn_lrCLR0.1-0.6-up0.25_Aug'
 
 if os.path.exists('./ul_output/'+file_name_prefix+'.txt'):
