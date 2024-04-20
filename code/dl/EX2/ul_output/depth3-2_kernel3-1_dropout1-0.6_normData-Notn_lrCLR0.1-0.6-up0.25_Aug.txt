@@ -1,0 +1,250 @@
+Files already downloaded and verified
+Files already downloaded and verified
+----------------------------------------------------------------
+        Layer (type)               Output Shape         Param #
+================================================================
+            Conv2d-1         [-1, 64, 224, 224]           1,792
+              ReLU-2         [-1, 64, 224, 224]               0
+            Conv2d-3        [-1, 128, 224, 224]          73,856
+              ReLU-4        [-1, 128, 224, 224]               0
+         MaxPool2d-5        [-1, 128, 112, 112]               0
+            Conv2d-6        [-1, 128, 112, 112]         147,456
+              ReLU-7        [-1, 128, 112, 112]               0
+            Conv2d-8        [-1, 128, 112, 112]         147,456
+              ReLU-9        [-1, 128, 112, 112]               0
+       BasicBlock-10        [-1, 128, 112, 112]               0
+           Conv2d-11        [-1, 256, 112, 112]         295,168
+             ReLU-12        [-1, 256, 112, 112]               0
+        MaxPool2d-13          [-1, 256, 56, 56]               0
+           Conv2d-14          [-1, 512, 56, 56]       1,180,160
+             ReLU-15          [-1, 512, 56, 56]               0
+        MaxPool2d-16          [-1, 512, 28, 28]               0
+           Conv2d-17          [-1, 512, 28, 28]       2,359,296
+             ReLU-18          [-1, 512, 28, 28]               0
+           Conv2d-19          [-1, 512, 28, 28]       2,359,296
+             ReLU-20          [-1, 512, 28, 28]               0
+       BasicBlock-21          [-1, 512, 28, 28]               0
+          Dropout-22          [-1, 512, 28, 28]               0
+AdaptiveAvgPool2d-23            [-1, 512, 1, 1]               0
+          Flatten-24                  [-1, 512]               0
+           Linear-25                   [-1, 10]           5,130
+================================================================
+Total params: 6,569,610
+Trainable params: 6,569,610
+Non-trainable params: 0
+----------------------------------------------------------------
+Input size (MB): 0.57
+Forward/backward pass size (MB): 321.57
+Params size (MB): 25.06
+Estimated Total Size (MB): 347.21
+----------------------------------------------------------------
+Validation loss decreased (2.100769 --> 2.100769).  Saving model ...
+Epoch [1/200], Train Loss: 2.2318, Val Loss: 2.1008, Val Acc: 21.70%
+Validation loss decreased (1.853075 --> 1.853075).  Saving model ...
+Epoch [2/200], Train Loss: 1.9030, Val Loss: 1.8531, Val Acc: 29.42%
+Validation loss decreased (1.777658 --> 1.777658).  Saving model ...
+Epoch [3/200], Train Loss: 1.6976, Val Loss: 1.7777, Val Acc: 34.87%
+Validation loss decreased (1.637682 --> 1.637682).  Saving model ...
+Epoch [4/200], Train Loss: 1.5215, Val Loss: 1.6377, Val Acc: 41.76%
+Validation loss decreased (1.521000 --> 1.521000).  Saving model ...
+Epoch [5/200], Train Loss: 1.5206, Val Loss: 1.5210, Val Acc: 45.35%
+Validation loss decreased (1.331674 --> 1.331674).  Saving model ...
+Epoch [6/200], Train Loss: 1.2917, Val Loss: 1.3317, Val Acc: 51.96%
+EarlyStopping counter: 1 out of 70.0
+Epoch [7/200], Train Loss: 1.1919, Val Loss: 1.6744, Val Acc: 45.74%
+EarlyStopping counter: 2 out of 70.0
+Epoch [8/200], Train Loss: 1.6936, Val Loss: 1.7011, Val Acc: 41.39%
+EarlyStopping counter: 3 out of 70.0
+Epoch [9/200], Train Loss: 1.1768, Val Loss: 1.3818, Val Acc: 54.02%
+Epoch [10/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [11/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [12/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [13/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [14/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [15/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [16/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [17/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [18/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [19/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [20/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [21/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [22/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [23/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [24/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [25/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [26/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [27/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [28/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [29/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [30/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [31/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [32/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [33/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [34/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [35/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [36/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [37/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [38/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [39/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [40/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [41/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [42/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [43/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [44/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [45/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [46/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [47/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [48/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [49/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [50/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [51/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [52/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [53/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [54/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [55/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [56/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [57/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [58/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [59/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [60/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [61/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [62/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [63/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [64/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [65/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [66/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [67/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [68/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [69/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [70/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [71/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [72/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [73/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [74/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [75/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [76/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [77/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [78/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [79/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [80/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [81/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [82/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [83/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [84/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [85/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [86/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [87/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [88/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [89/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [90/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [91/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [92/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [93/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [94/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [95/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [96/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [97/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [98/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [99/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [100/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [101/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [102/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [103/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [104/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [105/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [106/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [107/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [108/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [109/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [110/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [111/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [112/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [113/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [114/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [115/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [116/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [117/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [118/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [119/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [120/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [121/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [122/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [123/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [124/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [125/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [126/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [127/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [128/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [129/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [130/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [131/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [132/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [133/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [134/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [135/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [136/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [137/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [138/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [139/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [140/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [141/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [142/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [143/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [144/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [145/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [146/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [147/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [148/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [149/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [150/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [151/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [152/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [153/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [154/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [155/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [156/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [157/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [158/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [159/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [160/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [161/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [162/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [163/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [164/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [165/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [166/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [167/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [168/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [169/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [170/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [171/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [172/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [173/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [174/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [175/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [176/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [177/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [178/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [179/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [180/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [181/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [182/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [183/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [184/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [185/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [186/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [187/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [188/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [189/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [190/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [191/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [192/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [193/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [194/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [195/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [196/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [197/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [198/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [199/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Epoch [200/200], Train Loss: nan, Val Loss: nan, Val Acc: 9.86%
+Test Loss: 1.2827, Test Acc: 52.57%

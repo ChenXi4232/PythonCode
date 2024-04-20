@@ -103,3 +103,8 @@ Thumbs.db
 
 **/dataset/
 /dataset/
+
+# 不忽略的指定文件夹
+
+!/code/dl/EX2/ul_output/*.txt
+!/code/dl/EX2/ul_output/*.png
