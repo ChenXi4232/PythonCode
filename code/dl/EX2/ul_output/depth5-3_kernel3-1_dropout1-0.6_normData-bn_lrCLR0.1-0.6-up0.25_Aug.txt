@@ -1,0 +1,464 @@
+Files already downloaded and verified
+Files already downloaded and verified
+----------------------------------------------------------------
+        Layer (type)               Output Shape         Param #
+================================================================
+            Conv2d-1         [-1, 64, 224, 224]           1,792
+       BatchNorm2d-2         [-1, 64, 224, 224]             128
+              ReLU-3         [-1, 64, 224, 224]               0
+            Conv2d-4        [-1, 128, 224, 224]          73,856
+       BatchNorm2d-5        [-1, 128, 224, 224]             256
+              ReLU-6        [-1, 128, 224, 224]               0
+         MaxPool2d-7        [-1, 128, 112, 112]               0
+            Conv2d-8        [-1, 128, 112, 112]         147,456
+       BatchNorm2d-9        [-1, 128, 112, 112]             256
+             ReLU-10        [-1, 128, 112, 112]               0
+           Conv2d-11        [-1, 128, 112, 112]         147,456
+      BatchNorm2d-12        [-1, 128, 112, 112]             256
+             ReLU-13        [-1, 128, 112, 112]               0
+       BasicBlock-14        [-1, 128, 112, 112]               0
+           Conv2d-15        [-1, 256, 112, 112]         295,168
+      BatchNorm2d-16        [-1, 256, 112, 112]             512
+             ReLU-17        [-1, 256, 112, 112]               0
+        MaxPool2d-18          [-1, 256, 56, 56]               0
+           Conv2d-19          [-1, 512, 56, 56]       1,180,160
+      BatchNorm2d-20          [-1, 512, 56, 56]           1,024
+             ReLU-21          [-1, 512, 56, 56]               0
+        MaxPool2d-22          [-1, 512, 28, 28]               0
+           Conv2d-23          [-1, 512, 28, 28]       2,359,296
+      BatchNorm2d-24          [-1, 512, 28, 28]           1,024
+             ReLU-25          [-1, 512, 28, 28]               0
+           Conv2d-26          [-1, 512, 28, 28]       2,359,296
+      BatchNorm2d-27          [-1, 512, 28, 28]           1,024
+             ReLU-28          [-1, 512, 28, 28]               0
+       BasicBlock-29          [-1, 512, 28, 28]               0
+           Conv2d-30         [-1, 1024, 28, 28]       4,719,616
+      BatchNorm2d-31         [-1, 1024, 28, 28]           2,048
+             ReLU-32         [-1, 1024, 28, 28]               0
+        MaxPool2d-33         [-1, 1024, 14, 14]               0
+           Conv2d-34         [-1, 2048, 14, 14]      18,876,416
+      BatchNorm2d-35         [-1, 2048, 14, 14]           4,096
+             ReLU-36         [-1, 2048, 14, 14]               0
+        MaxPool2d-37           [-1, 2048, 7, 7]               0
+           Conv2d-38           [-1, 2048, 7, 7]      37,748,736
+      BatchNorm2d-39           [-1, 2048, 7, 7]           4,096
+             ReLU-40           [-1, 2048, 7, 7]               0
+           Conv2d-41           [-1, 2048, 7, 7]      37,748,736
+      BatchNorm2d-42           [-1, 2048, 7, 7]           4,096
+             ReLU-43           [-1, 2048, 7, 7]               0
+       BasicBlock-44           [-1, 2048, 7, 7]               0
+          Dropout-45           [-1, 2048, 7, 7]               0
+AdaptiveAvgPool2d-46           [-1, 2048, 1, 1]               0
+          Flatten-47                 [-1, 2048]               0
+           Linear-48                   [-1, 10]          20,490
+================================================================
+Total params: 105,697,290
+Trainable params: 105,697,290
+Non-trainable params: 0
+----------------------------------------------------------------
+Input size (MB): 0.57
+Forward/backward pass size (MB): 495.39
+Params size (MB): 403.20
+Estimated Total Size (MB): 899.17
+----------------------------------------------------------------
+Validation loss decreased (521.658715 --> 521.658715).  Saving model ...
+Epoch [1/200], Train Loss: 19.6817, Val Loss: 521.6587, Val Acc: 10.89%
+Validation loss decreased (2.362555 --> 2.362555).  Saving model ...
+Epoch [2/200], Train Loss: 3.8133, Val Loss: 2.3626, Val Acc: 11.80%
+Validation loss decreased (2.359645 --> 2.359645).  Saving model ...
+Epoch [3/200], Train Loss: 2.6949, Val Loss: 2.3596, Val Acc: 11.11%
+EarlyStopping counter: 1 out of 70.0
+Epoch [4/200], Train Loss: 2.5070, Val Loss: 2.3856, Val Acc: 13.37%
+Validation loss decreased (2.352812 --> 2.352812).  Saving model ...
+Epoch [5/200], Train Loss: 2.5781, Val Loss: 2.3528, Val Acc: 15.70%
+Validation loss decreased (2.234727 --> 2.234727).  Saving model ...
+Epoch [6/200], Train Loss: 2.4372, Val Loss: 2.2347, Val Acc: 15.82%
+Validation loss decreased (2.162635 --> 2.162635).  Saving model ...
+Epoch [7/200], Train Loss: 2.3168, Val Loss: 2.1626, Val Acc: 20.03%
+EarlyStopping counter: 1 out of 70.0
+Epoch [8/200], Train Loss: 2.2527, Val Loss: 197.9740, Val Acc: 15.81%
+EarlyStopping counter: 2 out of 70.0
+Epoch [9/200], Train Loss: 2.6129, Val Loss: 2.3717, Val Acc: 14.33%
+EarlyStopping counter: 3 out of 70.0
+Epoch [10/200], Train Loss: 2.2520, Val Loss: 2.1955, Val Acc: 15.36%
+Validation loss decreased (2.104895 --> 2.104895).  Saving model ...
+Epoch [11/200], Train Loss: 2.1580, Val Loss: 2.1049, Val Acc: 20.04%
+Validation loss decreased (2.020105 --> 2.020105).  Saving model ...
+Epoch [12/200], Train Loss: 2.0668, Val Loss: 2.0201, Val Acc: 22.20%
+Validation loss decreased (1.980420 --> 1.980420).  Saving model ...
+Epoch [13/200], Train Loss: 2.0092, Val Loss: 1.9804, Val Acc: 22.88%
+Validation loss decreased (1.968730 --> 1.968730).  Saving model ...
+Epoch [14/200], Train Loss: 1.9513, Val Loss: 1.9687, Val Acc: 21.52%
+EarlyStopping counter: 1 out of 70.0
+Epoch [15/200], Train Loss: 1.8852, Val Loss: 2.1418, Val Acc: 20.57%
+EarlyStopping counter: 2 out of 70.0
+Epoch [16/200], Train Loss: 1.8524, Val Loss: 2.1325, Val Acc: 20.98%
+Validation loss decreased (1.830773 --> 1.830773).  Saving model ...
+Epoch [17/200], Train Loss: 1.8089, Val Loss: 1.8308, Val Acc: 31.07%
+Validation loss decreased (1.754996 --> 1.754996).  Saving model ...
+Epoch [18/200], Train Loss: 1.6834, Val Loss: 1.7550, Val Acc: 36.02%
+EarlyStopping counter: 1 out of 70.0
+Epoch [19/200], Train Loss: 1.6079, Val Loss: 1.9220, Val Acc: 28.24%
+Validation loss decreased (1.729340 --> 1.729340).  Saving model ...
+Epoch [20/200], Train Loss: 1.5295, Val Loss: 1.7293, Val Acc: 39.56%
+Validation loss decreased (1.573071 --> 1.573071).  Saving model ...
+Epoch [21/200], Train Loss: 1.4701, Val Loss: 1.5731, Val Acc: 41.26%
+EarlyStopping counter: 1 out of 70.0
+Epoch [22/200], Train Loss: 1.3931, Val Loss: 1.6211, Val Acc: 40.47%
+EarlyStopping counter: 2 out of 70.0
+Epoch [23/200], Train Loss: 1.3476, Val Loss: 1.6905, Val Acc: 40.13%
+Validation loss decreased (1.519645 --> 1.519645).  Saving model ...
+Epoch [24/200], Train Loss: 1.2483, Val Loss: 1.5196, Val Acc: 43.57%
+Validation loss decreased (1.341717 --> 1.341717).  Saving model ...
+Epoch [25/200], Train Loss: 1.1856, Val Loss: 1.3417, Val Acc: 51.05%
+EarlyStopping counter: 1 out of 70.0
+Epoch [26/200], Train Loss: 1.1045, Val Loss: 1.3717, Val Acc: 53.36%
+Validation loss decreased (1.283898 --> 1.283898).  Saving model ...
+Epoch [27/200], Train Loss: 1.0286, Val Loss: 1.2839, Val Acc: 56.69%
+EarlyStopping counter: 1 out of 70.0
+Epoch [28/200], Train Loss: 0.9386, Val Loss: 1.6085, Val Acc: 48.36%
+Validation loss decreased (1.282906 --> 1.282906).  Saving model ...
+Epoch [29/200], Train Loss: 0.8847, Val Loss: 1.2829, Val Acc: 59.33%
+EarlyStopping counter: 1 out of 70.0
+Epoch [30/200], Train Loss: 0.8015, Val Loss: 1.8906, Val Acc: 48.75%
+EarlyStopping counter: 2 out of 70.0
+Epoch [31/200], Train Loss: 0.7486, Val Loss: 1.3271, Val Acc: 59.28%
+EarlyStopping counter: 3 out of 70.0
+Epoch [32/200], Train Loss: 0.6781, Val Loss: 1.6158, Val Acc: 56.64%
+EarlyStopping counter: 4 out of 70.0
+Epoch [33/200], Train Loss: 0.6768, Val Loss: 1.9916, Val Acc: 48.39%
+Validation loss decreased (1.242542 --> 1.242542).  Saving model ...
+Epoch [34/200], Train Loss: 0.5991, Val Loss: 1.2425, Val Acc: 63.24%
+EarlyStopping counter: 1 out of 70.0
+Epoch [35/200], Train Loss: 0.5592, Val Loss: 10.7564, Val Acc: 18.62%
+Validation loss decreased (1.236036 --> 1.236036).  Saving model ...
+Epoch [36/200], Train Loss: 0.8618, Val Loss: 1.2360, Val Acc: 61.63%
+EarlyStopping counter: 1 out of 70.0
+Epoch [37/200], Train Loss: 0.5694, Val Loss: 1.7775, Val Acc: 53.24%
+EarlyStopping counter: 2 out of 70.0
+Epoch [38/200], Train Loss: 0.5155, Val Loss: 1.3735, Val Acc: 60.47%
+Validation loss decreased (0.958058 --> 0.958058).  Saving model ...
+Epoch [39/200], Train Loss: 0.4475, Val Loss: 0.9581, Val Acc: 70.03%
+EarlyStopping counter: 1 out of 70.0
+Epoch [40/200], Train Loss: 0.3925, Val Loss: 1.2930, Val Acc: 64.25%
+EarlyStopping counter: 2 out of 70.0
+Epoch [41/200], Train Loss: 0.3782, Val Loss: 2.2227, Val Acc: 50.12%
+EarlyStopping counter: 3 out of 70.0
+Epoch [42/200], Train Loss: 0.3923, Val Loss: 1.2986, Val Acc: 63.84%
+EarlyStopping counter: 4 out of 70.0
+Epoch [43/200], Train Loss: 0.3363, Val Loss: 1.7056, Val Acc: 58.03%
+EarlyStopping counter: 5 out of 70.0
+Epoch [44/200], Train Loss: 0.3013, Val Loss: 1.2083, Val Acc: 65.45%
+EarlyStopping counter: 6 out of 70.0
+Epoch [45/200], Train Loss: 0.2872, Val Loss: 1.2347, Val Acc: 66.99%
+EarlyStopping counter: 7 out of 70.0
+Epoch [46/200], Train Loss: 0.2881, Val Loss: 1.0851, Val Acc: 70.44%
+EarlyStopping counter: 8 out of 70.0
+Epoch [47/200], Train Loss: 0.2342, Val Loss: 1.1877, Val Acc: 69.33%
+EarlyStopping counter: 9 out of 70.0
+Epoch [48/200], Train Loss: 0.3030, Val Loss: 1.4871, Val Acc: 62.87%
+EarlyStopping counter: 10 out of 70.0
+Epoch [49/200], Train Loss: 0.2502, Val Loss: 1.1420, Val Acc: 68.69%
+EarlyStopping counter: 11 out of 70.0
+Epoch [50/200], Train Loss: 0.2302, Val Loss: 1.1423, Val Acc: 69.18%
+EarlyStopping counter: 12 out of 70.0
+Epoch [51/200], Train Loss: 0.2029, Val Loss: 1.9482, Val Acc: 53.74%
+EarlyStopping counter: 13 out of 70.0
+Epoch [52/200], Train Loss: 0.3048, Val Loss: 1.2533, Val Acc: 68.28%
+EarlyStopping counter: 14 out of 70.0
+Epoch [53/200], Train Loss: 0.2144, Val Loss: 1.6747, Val Acc: 61.84%
+EarlyStopping counter: 15 out of 70.0
+Epoch [54/200], Train Loss: 0.2524, Val Loss: 2.4539, Val Acc: 49.59%
+EarlyStopping counter: 16 out of 70.0
+Epoch [55/200], Train Loss: 0.2677, Val Loss: 1.1943, Val Acc: 68.48%
+EarlyStopping counter: 17 out of 70.0
+Epoch [56/200], Train Loss: 0.1760, Val Loss: 1.3094, Val Acc: 68.53%
+EarlyStopping counter: 18 out of 70.0
+Epoch [57/200], Train Loss: 0.1880, Val Loss: 2.9253, Val Acc: 47.72%
+EarlyStopping counter: 19 out of 70.0
+Epoch [58/200], Train Loss: 0.1836, Val Loss: 1.5237, Val Acc: 64.80%
+EarlyStopping counter: 20 out of 70.0
+Epoch [59/200], Train Loss: 0.1873, Val Loss: 1.4582, Val Acc: 63.29%
+EarlyStopping counter: 21 out of 70.0
+Epoch [60/200], Train Loss: 0.2172, Val Loss: 1.7432, Val Acc: 60.02%
+EarlyStopping counter: 22 out of 70.0
+Epoch [61/200], Train Loss: 0.1760, Val Loss: 1.7384, Val Acc: 64.61%
+EarlyStopping counter: 23 out of 70.0
+Epoch [62/200], Train Loss: 0.1637, Val Loss: 1.2316, Val Acc: 70.90%
+EarlyStopping counter: 24 out of 70.0
+Epoch [63/200], Train Loss: 0.1782, Val Loss: 2.8710, Val Acc: 52.54%
+EarlyStopping counter: 25 out of 70.0
+Epoch [64/200], Train Loss: 0.2779, Val Loss: 1.6349, Val Acc: 62.45%
+EarlyStopping counter: 26 out of 70.0
+Epoch [65/200], Train Loss: 0.2248, Val Loss: 1.7361, Val Acc: 60.21%
+EarlyStopping counter: 27 out of 70.0
+Epoch [66/200], Train Loss: 0.2159, Val Loss: 3.0228, Val Acc: 46.71%
+EarlyStopping counter: 28 out of 70.0
+Epoch [67/200], Train Loss: 0.2962, Val Loss: 1.2829, Val Acc: 63.84%
+EarlyStopping counter: 29 out of 70.0
+Epoch [68/200], Train Loss: 0.1638, Val Loss: 1.2087, Val Acc: 70.20%
+EarlyStopping counter: 30 out of 70.0
+Epoch [69/200], Train Loss: 0.2069, Val Loss: 1.2498, Val Acc: 69.66%
+EarlyStopping counter: 31 out of 70.0
+Epoch [70/200], Train Loss: 0.1843, Val Loss: 1.0393, Val Acc: 72.38%
+EarlyStopping counter: 32 out of 70.0
+Epoch [71/200], Train Loss: 0.1699, Val Loss: 1.5697, Val Acc: 65.43%
+EarlyStopping counter: 33 out of 70.0
+Epoch [72/200], Train Loss: 0.1641, Val Loss: 1.4405, Val Acc: 65.03%
+EarlyStopping counter: 34 out of 70.0
+Epoch [73/200], Train Loss: 0.1804, Val Loss: 1.4886, Val Acc: 66.37%
+EarlyStopping counter: 35 out of 70.0
+Epoch [74/200], Train Loss: 0.1036, Val Loss: 1.6250, Val Acc: 64.45%
+EarlyStopping counter: 36 out of 70.0
+Epoch [75/200], Train Loss: 0.1853, Val Loss: 0.9661, Val Acc: 74.90%
+EarlyStopping counter: 37 out of 70.0
+Epoch [76/200], Train Loss: 0.1114, Val Loss: 3.2230, Val Acc: 45.10%
+EarlyStopping counter: 38 out of 70.0
+Epoch [77/200], Train Loss: 0.4078, Val Loss: 1.1293, Val Acc: 69.71%
+EarlyStopping counter: 39 out of 70.0
+Epoch [78/200], Train Loss: 0.1770, Val Loss: 1.2487, Val Acc: 67.68%
+EarlyStopping counter: 40 out of 70.0
+Epoch [79/200], Train Loss: 0.1678, Val Loss: 1.2945, Val Acc: 69.03%
+EarlyStopping counter: 41 out of 70.0
+Epoch [80/200], Train Loss: 0.1992, Val Loss: 1.0018, Val Acc: 74.75%
+EarlyStopping counter: 42 out of 70.0
+Epoch [81/200], Train Loss: 0.0856, Val Loss: 1.1022, Val Acc: 72.96%
+EarlyStopping counter: 43 out of 70.0
+Epoch [82/200], Train Loss: 0.1661, Val Loss: 1.3166, Val Acc: 69.64%
+EarlyStopping counter: 44 out of 70.0
+Epoch [83/200], Train Loss: 0.1307, Val Loss: 1.7162, Val Acc: 60.79%
+EarlyStopping counter: 45 out of 70.0
+Epoch [84/200], Train Loss: 0.2440, Val Loss: 0.9921, Val Acc: 73.30%
+EarlyStopping counter: 46 out of 70.0
+Epoch [85/200], Train Loss: 0.1035, Val Loss: 1.3131, Val Acc: 71.66%
+EarlyStopping counter: 47 out of 70.0
+Epoch [86/200], Train Loss: 0.1815, Val Loss: 1.8308, Val Acc: 61.70%
+EarlyStopping counter: 48 out of 70.0
+Epoch [87/200], Train Loss: 0.1783, Val Loss: 1.3283, Val Acc: 69.75%
+EarlyStopping counter: 49 out of 70.0
+Epoch [88/200], Train Loss: 0.1229, Val Loss: 1.0965, Val Acc: 73.39%
+Validation loss decreased (0.877960 --> 0.877960).  Saving model ...
+Epoch [89/200], Train Loss: 0.1361, Val Loss: 0.8780, Val Acc: 77.20%
+EarlyStopping counter: 1 out of 70.0
+Epoch [90/200], Train Loss: 0.1283, Val Loss: 1.5059, Val Acc: 66.16%
+EarlyStopping counter: 2 out of 70.0
+Epoch [91/200], Train Loss: 0.1111, Val Loss: 1.3078, Val Acc: 68.30%
+EarlyStopping counter: 3 out of 70.0
+Epoch [92/200], Train Loss: 0.1270, Val Loss: 1.1717, Val Acc: 72.59%
+EarlyStopping counter: 4 out of 70.0
+Epoch [93/200], Train Loss: 0.1116, Val Loss: 1.1541, Val Acc: 73.76%
+EarlyStopping counter: 5 out of 70.0
+Epoch [94/200], Train Loss: 0.0748, Val Loss: 1.4124, Val Acc: 69.45%
+EarlyStopping counter: 6 out of 70.0
+Epoch [95/200], Train Loss: 0.1461, Val Loss: 1.2700, Val Acc: 73.52%
+EarlyStopping counter: 7 out of 70.0
+Epoch [96/200], Train Loss: 0.1370, Val Loss: 0.9247, Val Acc: 76.64%
+EarlyStopping counter: 8 out of 70.0
+Epoch [97/200], Train Loss: 0.0703, Val Loss: 1.8010, Val Acc: 64.48%
+EarlyStopping counter: 9 out of 70.0
+Epoch [98/200], Train Loss: 0.1270, Val Loss: 1.2548, Val Acc: 69.42%
+EarlyStopping counter: 10 out of 70.0
+Epoch [99/200], Train Loss: 0.1396, Val Loss: 1.8946, Val Acc: 65.43%
+EarlyStopping counter: 11 out of 70.0
+Epoch [100/200], Train Loss: 0.1222, Val Loss: 1.8681, Val Acc: 61.34%
+EarlyStopping counter: 12 out of 70.0
+Epoch [101/200], Train Loss: 0.1789, Val Loss: 1.3621, Val Acc: 69.01%
+EarlyStopping counter: 13 out of 70.0
+Epoch [102/200], Train Loss: 0.1461, Val Loss: 1.7105, Val Acc: 63.95%
+EarlyStopping counter: 14 out of 70.0
+Epoch [103/200], Train Loss: 0.1345, Val Loss: 0.9542, Val Acc: 76.55%
+EarlyStopping counter: 15 out of 70.0
+Epoch [104/200], Train Loss: 0.0904, Val Loss: 1.5169, Val Acc: 68.60%
+EarlyStopping counter: 16 out of 70.0
+Epoch [105/200], Train Loss: 0.1454, Val Loss: 0.9124, Val Acc: 75.89%
+EarlyStopping counter: 17 out of 70.0
+Epoch [106/200], Train Loss: 0.1141, Val Loss: 1.3626, Val Acc: 67.80%
+EarlyStopping counter: 18 out of 70.0
+Epoch [107/200], Train Loss: 0.1490, Val Loss: 1.6977, Val Acc: 65.43%
+EarlyStopping counter: 19 out of 70.0
+Epoch [108/200], Train Loss: 0.0924, Val Loss: 1.8496, Val Acc: 66.29%
+EarlyStopping counter: 20 out of 70.0
+Epoch [109/200], Train Loss: 0.1620, Val Loss: 0.9943, Val Acc: 74.85%
+EarlyStopping counter: 21 out of 70.0
+Epoch [110/200], Train Loss: 0.1028, Val Loss: 1.0979, Val Acc: 73.36%
+EarlyStopping counter: 22 out of 70.0
+Epoch [111/200], Train Loss: 0.0618, Val Loss: 1.2530, Val Acc: 70.72%
+EarlyStopping counter: 23 out of 70.0
+Epoch [112/200], Train Loss: 0.1183, Val Loss: 1.1850, Val Acc: 70.93%
+EarlyStopping counter: 24 out of 70.0
+Epoch [113/200], Train Loss: 0.1258, Val Loss: 1.2617, Val Acc: 71.29%
+EarlyStopping counter: 25 out of 70.0
+Epoch [114/200], Train Loss: 0.1374, Val Loss: 1.2467, Val Acc: 71.28%
+EarlyStopping counter: 26 out of 70.0
+Epoch [115/200], Train Loss: 0.0667, Val Loss: 1.3089, Val Acc: 70.38%
+EarlyStopping counter: 27 out of 70.0
+Epoch [116/200], Train Loss: 0.0688, Val Loss: 1.2275, Val Acc: 71.04%
+EarlyStopping counter: 28 out of 70.0
+Epoch [117/200], Train Loss: 0.1237, Val Loss: 1.0260, Val Acc: 75.18%
+EarlyStopping counter: 29 out of 70.0
+Epoch [118/200], Train Loss: 0.0612, Val Loss: 1.0024, Val Acc: 76.50%
+EarlyStopping counter: 30 out of 70.0
+Epoch [119/200], Train Loss: 0.0657, Val Loss: 1.2823, Val Acc: 70.37%
+EarlyStopping counter: 31 out of 70.0
+Epoch [120/200], Train Loss: 0.2013, Val Loss: 0.9131, Val Acc: 76.05%
+Validation loss decreased (0.848637 --> 0.848637).  Saving model ...
+Epoch [121/200], Train Loss: 0.1045, Val Loss: 0.8486, Val Acc: 77.95%
+EarlyStopping counter: 1 out of 70.0
+Epoch [122/200], Train Loss: 0.0694, Val Loss: 1.3782, Val Acc: 69.00%
+Validation loss decreased (0.797566 --> 0.797566).  Saving model ...
+Epoch [123/200], Train Loss: 0.1817, Val Loss: 0.7976, Val Acc: 77.91%
+EarlyStopping counter: 1 out of 70.0
+Epoch [124/200], Train Loss: 0.0774, Val Loss: 1.4300, Val Acc: 67.31%
+EarlyStopping counter: 2 out of 70.0
+Epoch [125/200], Train Loss: 0.0934, Val Loss: 1.6397, Val Acc: 66.98%
+EarlyStopping counter: 3 out of 70.0
+Epoch [126/200], Train Loss: 0.1092, Val Loss: 1.3996, Val Acc: 70.81%
+EarlyStopping counter: 4 out of 70.0
+Epoch [127/200], Train Loss: 0.1104, Val Loss: 1.3494, Val Acc: 68.27%
+EarlyStopping counter: 5 out of 70.0
+Epoch [128/200], Train Loss: 0.1231, Val Loss: 1.1037, Val Acc: 73.77%
+EarlyStopping counter: 6 out of 70.0
+Epoch [129/200], Train Loss: 0.0397, Val Loss: 0.8298, Val Acc: 78.84%
+EarlyStopping counter: 7 out of 70.0
+Epoch [130/200], Train Loss: 0.0778, Val Loss: 0.9176, Val Acc: 77.79%
+EarlyStopping counter: 8 out of 70.0
+Epoch [131/200], Train Loss: 0.0811, Val Loss: 1.4230, Val Acc: 70.27%
+EarlyStopping counter: 9 out of 70.0
+Epoch [132/200], Train Loss: 0.1850, Val Loss: 1.2263, Val Acc: 69.77%
+EarlyStopping counter: 10 out of 70.0
+Epoch [133/200], Train Loss: 0.1145, Val Loss: 0.9342, Val Acc: 76.48%
+EarlyStopping counter: 11 out of 70.0
+Epoch [134/200], Train Loss: 0.0759, Val Loss: 1.0594, Val Acc: 76.21%
+EarlyStopping counter: 12 out of 70.0
+Epoch [135/200], Train Loss: 0.0760, Val Loss: 0.9025, Val Acc: 77.30%
+EarlyStopping counter: 13 out of 70.0
+Epoch [136/200], Train Loss: 0.0372, Val Loss: 0.9111, Val Acc: 77.36%
+EarlyStopping counter: 14 out of 70.0
+Epoch [137/200], Train Loss: 0.0787, Val Loss: 1.1942, Val Acc: 73.86%
+EarlyStopping counter: 15 out of 70.0
+Epoch [138/200], Train Loss: 0.0877, Val Loss: 1.3953, Val Acc: 71.29%
+EarlyStopping counter: 16 out of 70.0
+Epoch [139/200], Train Loss: 0.1527, Val Loss: 1.1210, Val Acc: 72.75%
+EarlyStopping counter: 17 out of 70.0
+Epoch [140/200], Train Loss: 0.1550, Val Loss: 1.3165, Val Acc: 68.97%
+EarlyStopping counter: 18 out of 70.0
+Epoch [141/200], Train Loss: 0.1099, Val Loss: 1.6569, Val Acc: 64.52%
+EarlyStopping counter: 19 out of 70.0
+Epoch [142/200], Train Loss: 0.0956, Val Loss: 0.8787, Val Acc: 78.76%
+EarlyStopping counter: 20 out of 70.0
+Epoch [143/200], Train Loss: 0.0579, Val Loss: 1.3464, Val Acc: 70.17%
+EarlyStopping counter: 21 out of 70.0
+Epoch [144/200], Train Loss: 0.1354, Val Loss: 0.8737, Val Acc: 77.39%
+EarlyStopping counter: 22 out of 70.0
+Epoch [145/200], Train Loss: 0.0788, Val Loss: 0.9359, Val Acc: 76.90%
+Validation loss decreased (0.790128 --> 0.790128).  Saving model ...
+Epoch [146/200], Train Loss: 0.0236, Val Loss: 0.7901, Val Acc: 81.36%
+Validation loss decreased (0.735963 --> 0.735963).  Saving model ...
+Epoch [147/200], Train Loss: 0.0131, Val Loss: 0.7360, Val Acc: 81.53%
+EarlyStopping counter: 1 out of 70.0
+Epoch [148/200], Train Loss: 0.0110, Val Loss: 0.9500, Val Acc: 78.92%
+EarlyStopping counter: 2 out of 70.0
+Epoch [149/200], Train Loss: 0.0719, Val Loss: 1.3966, Val Acc: 70.66%
+EarlyStopping counter: 3 out of 70.0
+Epoch [150/200], Train Loss: 0.1120, Val Loss: 1.7151, Val Acc: 64.57%
+EarlyStopping counter: 4 out of 70.0
+Epoch [151/200], Train Loss: 0.1234, Val Loss: 1.3692, Val Acc: 67.32%
+EarlyStopping counter: 5 out of 70.0
+Epoch [152/200], Train Loss: 0.1194, Val Loss: 0.8769, Val Acc: 78.18%
+EarlyStopping counter: 6 out of 70.0
+Epoch [153/200], Train Loss: 0.0595, Val Loss: 1.5859, Val Acc: 67.79%
+EarlyStopping counter: 7 out of 70.0
+Epoch [154/200], Train Loss: 0.1001, Val Loss: 1.1789, Val Acc: 73.64%
+EarlyStopping counter: 8 out of 70.0
+Epoch [155/200], Train Loss: 0.0823, Val Loss: 1.3140, Val Acc: 73.10%
+EarlyStopping counter: 9 out of 70.0
+Epoch [156/200], Train Loss: 0.0699, Val Loss: 1.0468, Val Acc: 74.95%
+EarlyStopping counter: 10 out of 70.0
+Epoch [157/200], Train Loss: 0.1183, Val Loss: 0.9979, Val Acc: 77.53%
+EarlyStopping counter: 11 out of 70.0
+Epoch [158/200], Train Loss: 0.0533, Val Loss: 0.9463, Val Acc: 78.75%
+EarlyStopping counter: 12 out of 70.0
+Epoch [159/200], Train Loss: 0.0406, Val Loss: 0.9304, Val Acc: 79.34%
+EarlyStopping counter: 13 out of 70.0
+Epoch [160/200], Train Loss: 0.0393, Val Loss: 0.7906, Val Acc: 79.85%
+EarlyStopping counter: 14 out of 70.0
+Epoch [161/200], Train Loss: 0.0404, Val Loss: 0.8887, Val Acc: 78.88%
+EarlyStopping counter: 15 out of 70.0
+Epoch [162/200], Train Loss: 0.0889, Val Loss: 0.9057, Val Acc: 76.63%
+EarlyStopping counter: 16 out of 70.0
+Epoch [163/200], Train Loss: 0.0803, Val Loss: 0.8898, Val Acc: 77.90%
+EarlyStopping counter: 17 out of 70.0
+Epoch [164/200], Train Loss: 0.0386, Val Loss: 0.9079, Val Acc: 78.71%
+EarlyStopping counter: 18 out of 70.0
+Epoch [165/200], Train Loss: 0.0644, Val Loss: 1.2884, Val Acc: 70.72%
+EarlyStopping counter: 19 out of 70.0
+Epoch [166/200], Train Loss: 0.0950, Val Loss: 0.9413, Val Acc: 78.16%
+EarlyStopping counter: 20 out of 70.0
+Epoch [167/200], Train Loss: 0.0588, Val Loss: 0.7820, Val Acc: 80.62%
+EarlyStopping counter: 21 out of 70.0
+Epoch [168/200], Train Loss: 0.0576, Val Loss: 0.9214, Val Acc: 78.08%
+EarlyStopping counter: 22 out of 70.0
+Epoch [169/200], Train Loss: 0.0679, Val Loss: 1.0013, Val Acc: 75.66%
+EarlyStopping counter: 23 out of 70.0
+Epoch [170/200], Train Loss: 0.0805, Val Loss: 1.1360, Val Acc: 72.76%
+EarlyStopping counter: 24 out of 70.0
+Epoch [171/200], Train Loss: 0.0563, Val Loss: 0.8337, Val Acc: 79.44%
+EarlyStopping counter: 25 out of 70.0
+Epoch [172/200], Train Loss: 0.0290, Val Loss: 0.8846, Val Acc: 79.38%
+EarlyStopping counter: 26 out of 70.0
+Epoch [173/200], Train Loss: 0.0652, Val Loss: 1.1530, Val Acc: 73.18%
+EarlyStopping counter: 27 out of 70.0
+Epoch [174/200], Train Loss: 0.0777, Val Loss: 0.8153, Val Acc: 80.12%
+EarlyStopping counter: 28 out of 70.0
+Epoch [175/200], Train Loss: 0.0208, Val Loss: 0.7428, Val Acc: 82.22%
+EarlyStopping counter: 29 out of 70.0
+Epoch [176/200], Train Loss: 0.0074, Val Loss: 0.7397, Val Acc: 82.24%
+EarlyStopping counter: 30 out of 70.0
+Epoch [177/200], Train Loss: 0.0374, Val Loss: 0.8826, Val Acc: 79.54%
+EarlyStopping counter: 31 out of 70.0
+Epoch [178/200], Train Loss: 0.1047, Val Loss: 1.2513, Val Acc: 72.29%
+EarlyStopping counter: 32 out of 70.0
+Epoch [179/200], Train Loss: 0.0968, Val Loss: 0.8489, Val Acc: 78.82%
+EarlyStopping counter: 33 out of 70.0
+Epoch [180/200], Train Loss: 0.0448, Val Loss: 0.9961, Val Acc: 77.63%
+EarlyStopping counter: 34 out of 70.0
+Epoch [181/200], Train Loss: 0.0298, Val Loss: 0.7972, Val Acc: 80.38%
+EarlyStopping counter: 35 out of 70.0
+Epoch [182/200], Train Loss: 0.0161, Val Loss: 0.9281, Val Acc: 78.47%
+EarlyStopping counter: 36 out of 70.0
+Epoch [183/200], Train Loss: 0.0329, Val Loss: 0.8392, Val Acc: 80.51%
+EarlyStopping counter: 37 out of 70.0
+Epoch [184/200], Train Loss: 0.0394, Val Loss: 1.1204, Val Acc: 75.97%
+EarlyStopping counter: 38 out of 70.0
+Epoch [185/200], Train Loss: 0.0823, Val Loss: 1.0401, Val Acc: 76.11%
+EarlyStopping counter: 39 out of 70.0
+Epoch [186/200], Train Loss: 0.1047, Val Loss: 0.8851, Val Acc: 78.89%
+Validation loss decreased (0.727605 --> 0.727605).  Saving model ...
+Epoch [187/200], Train Loss: 0.0491, Val Loss: 0.7276, Val Acc: 80.01%
+EarlyStopping counter: 1 out of 70.0
+Epoch [188/200], Train Loss: 0.0137, Val Loss: 0.8249, Val Acc: 80.81%
+EarlyStopping counter: 2 out of 70.0
+Epoch [189/200], Train Loss: 0.0427, Val Loss: 0.7518, Val Acc: 81.21%
+Validation loss decreased (0.717563 --> 0.717563).  Saving model ...
+Epoch [190/200], Train Loss: 0.0138, Val Loss: 0.7176, Val Acc: 82.25%
+Validation loss decreased (0.676127 --> 0.676127).  Saving model ...
+Epoch [191/200], Train Loss: 0.0049, Val Loss: 0.6761, Val Acc: 83.88%
+EarlyStopping counter: 1 out of 70.0
+Epoch [192/200], Train Loss: 0.0025, Val Loss: 0.7211, Val Acc: 82.28%
+EarlyStopping counter: 2 out of 70.0
+Epoch [193/200], Train Loss: 0.0383, Val Loss: 0.8063, Val Acc: 79.73%
+EarlyStopping counter: 3 out of 70.0
+Epoch [194/200], Train Loss: 0.0778, Val Loss: 0.9906, Val Acc: 76.79%
+EarlyStopping counter: 4 out of 70.0
+Epoch [195/200], Train Loss: 0.0719, Val Loss: 1.3452, Val Acc: 72.59%
+EarlyStopping counter: 5 out of 70.0
+Epoch [196/200], Train Loss: 0.1195, Val Loss: 1.1177, Val Acc: 75.49%
+EarlyStopping counter: 6 out of 70.0
+Epoch [197/200], Train Loss: 0.0432, Val Loss: 0.7372, Val Acc: 81.54%
+EarlyStopping counter: 7 out of 70.0
+Epoch [198/200], Train Loss: 0.0157, Val Loss: 0.8024, Val Acc: 80.59%
+EarlyStopping counter: 8 out of 70.0
+Epoch [199/200], Train Loss: 0.0624, Val Loss: 0.8437, Val Acc: 79.10%
+EarlyStopping counter: 9 out of 70.0
+Epoch [200/200], Train Loss: 0.0297, Val Loss: 0.7669, Val Acc: 81.21%
+Test Loss: 0.7275, Test Acc: 83.80%
