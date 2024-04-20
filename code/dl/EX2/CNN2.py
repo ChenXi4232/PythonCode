@@ -155,17 +155,17 @@ mean_CIFAR10 = data.mean(axis=(0, 1, 2))
 std_CIFAR10 = data.std(axis=(0, 1, 2))
 
 # 定义数据增强的transform
-# transform_train = transforms.Compose([
-#     transforms.RandomHorizontalFlip(),
-#     transforms.RandomCrop(32, padding=4),
-#     transforms.Resize((224, 224)),
-#     transforms.ColorJitter(brightness=0.2, contrast=0.2,
-#                            saturation=0.2, hue=0.1),
-#     transforms.RandomApply([transforms.GaussianBlur(kernel_size=3)], p=0.5),
-#     transforms.RandomApply([transforms.RandomRotation(10)], p=0.5),
+transform_train = transforms.Compose([
+    transforms.RandomHorizontalFlip(),
+    transforms.RandomCrop(32, padding=4),
+    transforms.Resize((224, 224)),
+    transforms.ColorJitter(brightness=0.2, contrast=0.2,
+                           saturation=0.2, hue=0.1),
+    transforms.RandomApply([transforms.GaussianBlur(kernel_size=3)], p=0.5),
+    transforms.RandomApply([transforms.RandomRotation(10)], p=0.5),
     Cutout(n_holes=8, length=32),
     transforms.ToTensor(),
-#     transforms.Normalize(mean=mean_CIFAR10, std=std_CIFAR10),
+    transforms.Normalize(mean=mean_CIFAR10, std=std_CIFAR10),
     transforms.AutoAugment(policy=AutoAugmentPolicy.CIFAR10)
 ])
 
@@ -298,18 +298,18 @@ class ResNet(nn.Module):
         out = self.res1(out)
         out = self.lay2(out)
         out = self.lay3(out)
-#         out = self.res2(out)       out = self.res2(out)
-#         out = self.lay4(out)
-#         out = self.lay5(out)
+        out = self.res2(out)
+        # out = self.lay4(out)
+        # out = self.lay5(out)
         # out = self.res3(out)
         out = self.dropout1(out)
         out = self.pool(out)
         out = self.flatten(out)
-#         out = self.fc1(out)
-#         out = self.dropout2(out)
+        out = self.fc1(out)
+        out = self.dropout2(out)
         # out = self.relu(out)
-#         out = self.fc2(out)
-#         out = self.dropout3(out)
+        out = self.fc2(out)
+        out = self.dropout3(out)
         # out = self.relu(out)
         out = self.linear(out)
         return out
@@ -472,8 +472,8 @@ print_and_write(
 # Restoring stdout
 sys.stdout.close()
 sys.stdout = stdout_backup
-file_name_prefix = 'depth3-2_kernel3-1_dropout1-0.6_normData-bn_lrCLR0.1-0.6-up0.25_NotAug'
-file_name_prefix = 'depth3-2_kernel5-2_dropout1-0.6_normData-bn_lrCLR0.1-0.6-up0.25_Aug'
+
+file_name_prefix = 'depth3-2_kernel3-1_dropout3-0.6_normData-bn_lrCLR0.1-0.6-up0.25_Aug'
 
 if os.path.exists('./ul_output/'+file_name_prefix+'.txt'):
     os.remove('./ul_output/'+file_name_prefix+'.txt')
