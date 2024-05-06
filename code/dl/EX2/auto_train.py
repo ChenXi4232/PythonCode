@@ -80,182 +80,182 @@ git_commands = [
 
 execute_git_commands_in_directory(directory, git_commands)
 
-# '''
-# depth2-1_kernel3-1_dropout1-0.6_normData-bn_lrCLR0.1-0.6-up0.25_Aug
-# '''
+'''
+depth2-1_kernel3-1_dropout1-0.6_normData-bn_lrCLR0.1-0.6-up0.25_Aug
+'''
 
-# os.system('python CNN2.py')
-# execute_git_commands_in_directory(directory, git_commands)
+os.system('python CNN2.py')
+execute_git_commands_in_directory(directory, git_commands)
 
-# '''
-# depth3-2_kernel1-0_dropout1-0.6_normData-bn_lrCLR0.1-0.6-up0.25_Aug
-# '''
+'''
+depth3-2_kernel1-0_dropout1-0.6_normData-bn_lrCLR0.1-0.6-up0.25_Aug
+'''
 
-# remove_comments('CNN2.py', 299, 301)
-# modify_line('CNN2.py', 292, '        self.linear = nn.Linear(512, 10)')
-# replace_in_file('CNN2.py', 'kernel_size=3', 'kernel_size=1')
-# replace_in_file('CNN2.py', 'padding=1', 'padding=0')
-# modify_line('CNN2.py', 164,
-#             '    transforms.RandomApply([transforms.GaussianBlur(kernel_size=3)], p=0.5),')
-# modify_line('CNN2.py', 476,
-#             'file_name_prefix = \'depth3-2_kernel1-0_dropout1-0.6_normData-bn_lrCLR0.1-0.6-up0.25_Aug\'')
-# os.system('python CNN2.py')
-# execute_git_commands_in_directory(directory, git_commands)
+remove_comments('CNN2.py', 299, 301)
+modify_line('CNN2.py', 292, '        self.linear = nn.Linear(512, 10)')
+replace_in_file('CNN2.py', 'kernel_size=3', 'kernel_size=1')
+replace_in_file('CNN2.py', 'padding=1', 'padding=0')
+modify_line('CNN2.py', 164,
+            '    transforms.RandomApply([transforms.GaussianBlur(kernel_size=3)], p=0.5),')
+modify_line('CNN2.py', 476,
+            'file_name_prefix = \'depth3-2_kernel1-0_dropout1-0.6_normData-bn_lrCLR0.1-0.6-up0.25_Aug\'')
+os.system('python CNN2.py')
+execute_git_commands_in_directory(directory, git_commands)
 
-# '''
-# depth3-2_kernel3-1_dropout1-0.6_normData-bn_lrC0.1_Aug
-# '''
+'''
+depth3-2_kernel3-1_dropout1-0.6_normData-bn_lrC0.1_Aug
+'''
 
-# replace_in_file('CNN2.py', 'batch_size=768', 'batch_size=128')
-# replace_in_file('CNN2.py', 'kernel_size=1', 'kernel_size=3')
-# replace_in_file('CNN2.py', 'padding=0', 'padding=1')
-# add_comments('CNN2.py', 38, 46)
-# remove_comments('CNN2.py', 49, 56)
-# add_comments('CNN2.py', 59, 66)
-# remove_comments('CNN2.py', 69, 75)
-# add_comments('CNN2.py', 371, 373)
-# add_comments('CNN2.py', 376, 376)
-# remove_comments('CNN2.py', 377, 377)
-# add_comments('CNN2.py', 434, 434)
-# remove_comments('CNN2.py', 435, 435)
-# modify_line('CNN2.py', 476,
-#             'file_name_prefix = \'depth3-2_kernel3-1_dropout1-0.6_normData-bn_lrC0.1_Aug\'')
-# os.system('python CNN2.py')
-# execute_git_commands_in_directory(directory, git_commands)
+replace_in_file('CNN2.py', 'batch_size=768', 'batch_size=128')
+replace_in_file('CNN2.py', 'kernel_size=1', 'kernel_size=3')
+replace_in_file('CNN2.py', 'padding=0', 'padding=1')
+add_comments('CNN2.py', 38, 46)
+remove_comments('CNN2.py', 49, 56)
+add_comments('CNN2.py', 59, 66)
+remove_comments('CNN2.py', 69, 75)
+add_comments('CNN2.py', 371, 373)
+add_comments('CNN2.py', 376, 376)
+remove_comments('CNN2.py', 377, 377)
+add_comments('CNN2.py', 434, 434)
+remove_comments('CNN2.py', 435, 435)
+modify_line('CNN2.py', 476,
+            'file_name_prefix = \'depth3-2_kernel3-1_dropout1-0.6_normData-bn_lrC0.1_Aug\'')
+os.system('python CNN2.py')
+execute_git_commands_in_directory(directory, git_commands)
 
-# '''
-# depth3-2_kernel3-1_dropout1-0.6_normData-bn_lrCLR0.1-0.6-up0.25_Aug
-# '''
+'''
+depth3-2_kernel3-1_dropout1-0.6_normData-bn_lrCLR0.1-0.6-up0.25_Aug
+'''
 
-# replace_in_file('CNN2.py', 'batch_size=128', 'batch_size=768')
-# remove_comments('CNN2.py', 38, 46)
-# add_comments('CNN2.py', 49, 56)
-# remove_comments('CNN2.py', 59, 66)
-# add_comments('CNN2.py', 69, 75)
-# remove_comments('CNN2.py', 371, 373)
-# remove_comments('CNN2.py', 376, 376)
-# add_comments('CNN2.py', 377, 377)
-# remove_comments('CNN2.py', 434, 434)
-# add_comments('CNN2.py', 435, 435)
-# modify_line('CNN2.py', 476,
-#             'file_name_prefix = \'depth3-2_kernel3-1_dropout1-0.6_normData-bn_lrCLR0.1-0.6-up0.25_Aug\'')
-# os.system('python CNN2.py')
-# execute_git_commands_in_directory(directory, git_commands)
+replace_in_file('CNN2.py', 'batch_size=128', 'batch_size=768')
+remove_comments('CNN2.py', 38, 46)
+add_comments('CNN2.py', 49, 56)
+remove_comments('CNN2.py', 59, 66)
+add_comments('CNN2.py', 69, 75)
+remove_comments('CNN2.py', 371, 373)
+remove_comments('CNN2.py', 376, 376)
+add_comments('CNN2.py', 377, 377)
+remove_comments('CNN2.py', 434, 434)
+add_comments('CNN2.py', 435, 435)
+modify_line('CNN2.py', 476,
+            'file_name_prefix = \'depth3-2_kernel3-1_dropout1-0.6_normData-bn_lrCLR0.1-0.6-up0.25_Aug\'')
+os.system('python CNN2.py')
+execute_git_commands_in_directory(directory, git_commands)
 
-# '''
-# depth3-2_kernel3-1_dropout1-0.6_normData-bn_lrStep0.2-0.5_Aug
-# '''
+'''
+depth3-2_kernel3-1_dropout1-0.6_normData-bn_lrStep0.2-0.5_Aug
+'''
 
-# replace_in_file('CNN2.py', 'batch_size=768', 'batch_size=128')
-# remove_comments('CNN2.py', 368, 369)
-# add_comments('CNN2.py', 371, 373)
-# modify_line('CNN2.py', 476,
-#             'file_name_prefix = \'depth3-2_kernel3-1_dropout1-0.6_normData-bn_lrStep0.2-0.5_Aug\'')
-# os.system('python CNN2.py')
-# execute_git_commands_in_directory(directory, git_commands)
+replace_in_file('CNN2.py', 'batch_size=768', 'batch_size=128')
+remove_comments('CNN2.py', 368, 369)
+add_comments('CNN2.py', 371, 373)
+modify_line('CNN2.py', 476,
+            'file_name_prefix = \'depth3-2_kernel3-1_dropout1-0.6_normData-bn_lrStep0.2-0.5_Aug\'')
+os.system('python CNN2.py')
+execute_git_commands_in_directory(directory, git_commands)
 
-# '''
-# depth3-2_kernel3-1_dropout1-0.6_normData-in_lrCLR0.1-0.6-up0.25_Aug
-# '''
+'''
+depth3-2_kernel3-1_dropout1-0.6_normData-in_lrCLR0.1-0.6-up0.25_Aug
+'''
 
-# replace_in_file('CNN2.py', 'batch_size=128', 'batch_size=768')
-# replace_in_file('CNN2.py', 'nn.BatchNorm2d', 'nn.InstanceNorm2d')
-# add_comments('CNN2.py', 368, 369)
-# remove_comments('CNN2.py', 371, 373)
-# modify_line('CNN2.py', 476,
-#             'file_name_prefix = \'depth3-2_kernel3-1_dropout1-0.6_normData-in_lrCLR0.1-0.6-up0.25_Aug\'')
-# os.system('python CNN2.py')
-# execute_git_commands_in_directory(directory, git_commands)
+replace_in_file('CNN2.py', 'batch_size=128', 'batch_size=768')
+replace_in_file('CNN2.py', 'nn.BatchNorm2d', 'nn.InstanceNorm2d')
+add_comments('CNN2.py', 368, 369)
+remove_comments('CNN2.py', 371, 373)
+modify_line('CNN2.py', 476,
+            'file_name_prefix = \'depth3-2_kernel3-1_dropout1-0.6_normData-in_lrCLR0.1-0.6-up0.25_Aug\'')
+os.system('python CNN2.py')
+execute_git_commands_in_directory(directory, git_commands)
 
-# '''
-# depth3-2_kernel3-1_dropout1-0.6_normData-Notn_lrCLR0.1-0.6-up0.25_Aug
-# '''
+'''
+depth3-2_kernel3-1_dropout1-0.6_normData-Notn_lrCLR0.1-0.6-up0.25_Aug
+'''
 
-# replace_in_file('CNN2.py', 'nn.InstanceNorm2d', 'nn.BatchNorm2d')
-# add_comments('CNN2.py', 220, 220)
-# add_comments('CNN2.py', 225, 225)
-# add_comments('CNN2.py', 239, 239)
-# add_comments('CNN2.py', 246, 246)
-# add_comments('CNN2.py', 255, 255)
-# add_comments('CNN2.py', 263, 263)
-# modify_line('CNN2.py', 476,
-#             'file_name_prefix = \'depth3-2_kernel3-1_dropout1-0.6_normData-Notn_lrCLR0.1-0.6-up0.25_Aug\'')
-# os.system('python CNN2.py')
-# execute_git_commands_in_directory(directory, git_commands)
+replace_in_file('CNN2.py', 'nn.InstanceNorm2d', 'nn.BatchNorm2d')
+add_comments('CNN2.py', 220, 220)
+add_comments('CNN2.py', 225, 225)
+add_comments('CNN2.py', 239, 239)
+add_comments('CNN2.py', 246, 246)
+add_comments('CNN2.py', 255, 255)
+add_comments('CNN2.py', 263, 263)
+modify_line('CNN2.py', 476,
+            'file_name_prefix = \'depth3-2_kernel3-1_dropout1-0.6_normData-Notn_lrCLR0.1-0.6-up0.25_Aug\'')
+os.system('python CNN2.py')
+execute_git_commands_in_directory(directory, git_commands)
 
-# '''
-# depth3-2_kernel3-1_dropout1-0.6_NotnormData-bn_lrCLR0.1-0.6-up0.25_Aug
-# '''
+'''
+depth3-2_kernel3-1_dropout1-0.6_NotnormData-bn_lrCLR0.1-0.6-up0.25_Aug
+'''
 
-# add_comments('CNN2.py', 168, 168)
-# add_comments('CNN2.py', 174, 174)
-# remove_comments('CNN2.py', 220, 220)
-# remove_comments('CNN2.py', 225, 225)
-# remove_comments('CNN2.py', 239, 239)
-# remove_comments('CNN2.py', 246, 246)
-# remove_comments('CNN2.py', 255, 255)
-# remove_comments('CNN2.py', 263, 263)
-# modify_line('CNN2.py', 476,
-#             'file_name_prefix = \'depth3-2_kernel3-1_dropout1-0.6_NotnormData-bn_lrCLR0.1-0.6-up0.25_Aug\'')
-# os.system('python CNN2.py')
-# execute_git_commands_in_directory(directory, git_commands)
+add_comments('CNN2.py', 168, 168)
+add_comments('CNN2.py', 174, 174)
+remove_comments('CNN2.py', 220, 220)
+remove_comments('CNN2.py', 225, 225)
+remove_comments('CNN2.py', 239, 239)
+remove_comments('CNN2.py', 246, 246)
+remove_comments('CNN2.py', 255, 255)
+remove_comments('CNN2.py', 263, 263)
+modify_line('CNN2.py', 476,
+            'file_name_prefix = \'depth3-2_kernel3-1_dropout1-0.6_NotnormData-bn_lrCLR0.1-0.6-up0.25_Aug\'')
+os.system('python CNN2.py')
+execute_git_commands_in_directory(directory, git_commands)
 
-# '''
-# depth3-2_kernel3-1_dropout0-0_normData-bn_lrCLR0.1-0.6-up0.25_Aug
-# '''
+'''
+depth3-2_kernel3-1_dropout0-0_normData-bn_lrCLR0.1-0.6-up0.25_Aug
+'''
 
-# remove_comments('CNN2.py', 168, 168)
-# remove_comments('CNN2.py', 174, 174)
-# add_comments('CNN2.py', 304, 304)
-# remove_comments('CNN2.py', 308, 308)
-# remove_comments('CNN2.py', 311, 311)
-# modify_line('CNN2.py', 476,
-#             'file_name_prefix = \'depth3-2_kernel3-1_dropout0-0_normData-bn_lrCLR0.1-0.6-up0.25_Aug\'')
-# os.system('python CNN2.py')
-# execute_git_commands_in_directory(directory, git_commands)
+remove_comments('CNN2.py', 168, 168)
+remove_comments('CNN2.py', 174, 174)
+add_comments('CNN2.py', 304, 304)
+remove_comments('CNN2.py', 308, 308)
+remove_comments('CNN2.py', 311, 311)
+modify_line('CNN2.py', 476,
+            'file_name_prefix = \'depth3-2_kernel3-1_dropout0-0_normData-bn_lrCLR0.1-0.6-up0.25_Aug\'')
+os.system('python CNN2.py')
+execute_git_commands_in_directory(directory, git_commands)
 
-# '''
-# depth3-2_kernel3-1_dropout3-0.2_normData-bn_lrCLR0.1-0.6-up0.25_Aug
-# '''
+'''
+depth3-2_kernel3-1_dropout3-0.2_normData-bn_lrCLR0.1-0.6-up0.25_Aug
+'''
 
-# remove_comments('CNN2.py', 305, 305)
-# remove_comments('CNN2.py', 309, 309)
-# remove_comments('CNN2.py', 312, 312)
-# modify_line('CNN2.py', 285, '        self.dropout1 = nn.Dropout(0.2)')
-# modify_line('CNN2.py', 476,
-#             'file_name_prefix = \'depth3-2_kernel3-1_dropout3-0.2_normData-bn_lrCLR0.1-0.6-up0.25_Aug\'')
-# os.system('python CNN2.py')
-# execute_git_commands_in_directory(directory, git_commands)
+remove_comments('CNN2.py', 305, 305)
+remove_comments('CNN2.py', 309, 309)
+remove_comments('CNN2.py', 312, 312)
+modify_line('CNN2.py', 285, '        self.dropout1 = nn.Dropout(0.2)')
+modify_line('CNN2.py', 476,
+            'file_name_prefix = \'depth3-2_kernel3-1_dropout3-0.2_normData-bn_lrCLR0.1-0.6-up0.25_Aug\'')
+os.system('python CNN2.py')
+execute_git_commands_in_directory(directory, git_commands)
 
-# '''
-# depth3-2_kernel3-1_dropout3-0.4_normData-bn_lrCLR0.1-0.6-up0.25_Aug
-# '''
+'''
+depth3-2_kernel3-1_dropout3-0.4_normData-bn_lrCLR0.1-0.6-up0.25_Aug
+'''
 
-# modify_line('CNN2.py', 285, '        self.dropout1 = nn.Dropout(0.4)')
-# modify_line('CNN2.py', 476,
-#             'file_name_prefix = \'depth3-2_kernel3-1_dropout3-0.4_normData-bn_lrCLR0.1-0.6-up0.25_Aug\'')
-# os.system('python CNN2.py')
-# execute_git_commands_in_directory(directory, git_commands)
+modify_line('CNN2.py', 285, '        self.dropout1 = nn.Dropout(0.4)')
+modify_line('CNN2.py', 476,
+            'file_name_prefix = \'depth3-2_kernel3-1_dropout3-0.4_normData-bn_lrCLR0.1-0.6-up0.25_Aug\'')
+os.system('python CNN2.py')
+execute_git_commands_in_directory(directory, git_commands)
 
-# '''
-# depth3-2_kernel3-1_dropout3-0.6_normData-bn_lrCLR0.1-0.6-up0.25_Aug
-# '''
+'''
+depth3-2_kernel3-1_dropout3-0.6_normData-bn_lrCLR0.1-0.6-up0.25_Aug
+'''
 
-# modify_line('CNN2.py', 285, '        self.dropout1 = nn.Dropout(0.6)')
-# modify_line('CNN2.py', 476,
-#             'file_name_prefix = \'depth3-2_kernel3-1_dropout3-0.6_normData-bn_lrCLR0.1-0.6-up0.25_Aug\'')
-# os.system('python CNN2.py')
-# execute_git_commands_in_directory(directory, git_commands)
+modify_line('CNN2.py', 285, '        self.dropout1 = nn.Dropout(0.6)')
+modify_line('CNN2.py', 476,
+            'file_name_prefix = \'depth3-2_kernel3-1_dropout3-0.6_normData-bn_lrCLR0.1-0.6-up0.25_Aug\'')
+os.system('python CNN2.py')
+execute_git_commands_in_directory(directory, git_commands)
 
-# '''
-# depth3-2_kernel3-1_dropout3-0.8_normData-bn_lrCLR0.1-0.6-up0.25_Aug
-# '''
+'''
+depth3-2_kernel3-1_dropout3-0.8_normData-bn_lrCLR0.1-0.6-up0.25_Aug
+'''
 
-# modify_line('CNN2.py', 285, '        self.dropout1 = nn.Dropout(0.8)')
-# modify_line('CNN2.py', 476,
-#             'file_name_prefix = \'depth3-2_kernel3-1_dropout3-0.8_normData-bn_lrCLR0.1-0.6-up0.25_Aug\'')
-# os.system('python CNN2.py')
-# execute_git_commands_in_directory(directory, git_commands)
+modify_line('CNN2.py', 285, '        self.dropout1 = nn.Dropout(0.8)')
+modify_line('CNN2.py', 476,
+            'file_name_prefix = \'depth3-2_kernel3-1_dropout3-0.8_normData-bn_lrCLR0.1-0.6-up0.25_Aug\'')
+os.system('python CNN2.py')
+execute_git_commands_in_directory(directory, git_commands)
 
 # restart
 
