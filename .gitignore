@@ -108,3 +108,4 @@ Thumbs.db
 
 !/code/dl/EX2/ul_output/*.txt
 !/code/dl/EX2/ul_output/*.png
+!/code/transformer/ViT/tongue/data/dataset/*.jpg

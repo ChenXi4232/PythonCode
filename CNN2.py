@@ -150,6 +150,8 @@ testset = torchvision.datasets.CIFAR10(
 
 data = trainset.data / 255.0
 
+print(data.shape)
+
 mean_CIFAR10 = data.mean(axis=(0, 1, 2))
 std_CIFAR10 = data.std(axis=(0, 1, 2))
 

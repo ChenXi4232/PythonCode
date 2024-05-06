@@ -74,7 +74,7 @@ def create_dataset(csv_file, txt_data, image_dir, output_dir):
 def main():
     txt_file = './label.txt'
     csv_file = './multi_label_tongue.csv'
-    image_dir = './tongue_front'
+    image_dir = './seg_dataset'
     output_dir = 'dataset'
 
     txt_data = read_txt_file(txt_file)
