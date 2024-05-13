@@ -27,16 +27,21 @@ import os
 # cv2.destroyAllWindows()
 
 
-def process_images_in_folder(folder_path):
-    # 遍历文件夹中的所有文件和子文件夹
-    for root, dirs, files in os.walk(folder_path):
-        for file_name in files:
-            # 只处理图像文件
-            if file_name.endswith(('.jpg', '.jpeg', '.png', '.bmp')):
-                # 构建图像文件的完整路径
-                image_path = os.path.join(root, file_name)
-                # 调用图像处理函数
-                process_image(image_path)
+def process_images_in_folder(path):
+    if os.path.isdir(path) and os.path.isdir(path):
+        # 遍历文件夹中的所有文件和子文件夹
+        for root, dirs, files in os.walk(path):
+            for file_name in files:
+                # 只处理图像文件
+                if file_name.endswith(('.jpg', '.jpeg', '.png', '.bmp')):
+                    # 构建图像文件的完整路径
+                    image_path = os.path.join(root, file_name)
+                    # 调用图像处理函数
+                    process_image(image_path)
+    elif os.path.isfile(path) and os.path.isfile(path):
+        process_image(path)
+    else:
+        print(f"Invalid input path: {path}")
 
 
 def process_image(image_path):
@@ -81,6 +86,6 @@ def process_image(image_path):
 
 
 # 处理文件夹中的所有图像
-input_folder = './dataset/'
+input_folder = r'D:\PythonCode\code\transformer\ViT\tongue\test\seg_dataset\test2.jpg'
 
 process_images_in_folder(input_folder)
