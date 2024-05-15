@@ -86,6 +86,6 @@ def process_image(image_path):
 
 
 # 处理文件夹中的所有图像
-input_folder = r'D:\PythonCode\code\transformer\ViT\tongue\test\seg_dataset\test2.jpg'
+input_folder = r'D:\PythonCode\code\transformer\ViT\tongue\test\seg_dataset\test1.jpg'
 
 process_images_in_folder(input_folder)

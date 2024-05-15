@@ -70,9 +70,9 @@ def segment_images_with_gray(gray_input, original_input, output_dir):
 
 
 # 原图像目录路径
-original_folder = r'D:\PythonCode\code\transformer\ViT\tongue\data\test\label_data\test2.jpg'
+original_folder = r'D:\PythonCode\code\transformer\ViT\tongue\data\test\label_data\test1.jpg'
 # 蒙版目录路径
-mask_folder = r'D:\PythonCode\code\transformer\ViT\tongue\mask.jpg'
+mask_folder = r'D:\PythonCode\code\transformer\ViT\tongue\mask3.jpg'
 # 分割后图像保存目录路径
 output_folder = '../test/seg_dataset'
 if not os.path.exists(output_folder):
