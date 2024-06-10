@@ -68,7 +68,7 @@ class GraphConvolution(nn.Module):
 
 class GCN(nn.Module):
     def __init__(self, in_features, hidden_features, out_features, num_layers, activation=F.relu, dropout=0.8, drop_edge_rate=0.0, with_loop=True, pair_mode='PN-SCS'):
-        super(GCN, self).__init__()
+        super(GCN, self).__init__() b
         self.layers = nn.ModuleList()
         self.activation = activation
         self.dropout = nn.Dropout(dropout)

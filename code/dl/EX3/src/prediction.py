@@ -12,6 +12,7 @@ from dgl.data import citation_graph as citegrh
 import torch
 import numpy as np
 import scipy.sparse as sp
+import matplotlib.pyplot as plt
 
 
 seed = 24
@@ -293,7 +294,7 @@ def compute_auc(pos_score, neg_score):
 def train_model(model, g, features, train_pos_g, train_neg_g, val_pos_g, val_neg_g, pred, epochs=500):
 
     optimizer = optim.Adam(itertools.chain(
-        model.parameters(), pred.parameters()), lr=0.01)
+        model.parameters(), pred.parameters()), lr=0.01, weight_decay=5e-3)
     scheduler = StepLR(optimizer, step_size=0.3*epochs, gamma=0.5)
 
     best_auc = 0
