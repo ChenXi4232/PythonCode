@@ -1,9 +1,13 @@
 |序号|公式|规则|
 |---|---|---|
-|(1)|p->q|假定|
-|(2)|q->r|假定|
-|(3)|(q->r)->(p->(q->r))|L1|
-|(4)|p->(q->r)|(2), (3), MP|
-|(5)|(p->(q->r))->((p->q)->(p->r))|L2|
-|(6)|(p->q)->(p->r)|(4), (5), MP|
-|(7)|p->r|(1), (6), MP|
+|(1)|$p$|假定|
+|(2)|$p \rightarrow ((p \rightarrow q) \rightarrow p)$|L1|
+|(3)|$(p \rightarrow q) \rightarrow p$|(1), (2), MP|
+|(4)|$(p \rightarrow q) \rightarrow (((p \rightarrow q) \rightarrow (p \rightarrow q)) \rightarrow (p \rightarrow q))$|L1|
+|(5)|$((p \rightarrow q) \rightarrow (((p \rightarrow q) \rightarrow (p \rightarrow q)) \rightarrow (p \rightarrow q))) \rightarrow (((p \rightarrow q) \rightarrow ((p \rightarrow q) \rightarrow (p \rightarrow q))) \rightarrow ((p \rightarrow q) \rightarrow (p \rightarrow q)))$|L2|
+|(6)|$((p \rightarrow q) \rightarrow ((p \rightarrow q) \rightarrow (p \rightarrow q))) \rightarrow ((p \rightarrow q) \rightarrow (p \rightarrow q))$|(4), (5), MP|
+|(7)|$(p \rightarrow q) \rightarrow ((p \rightarrow q) \rightarrow (p \rightarrow q))$|L1|
+|(8)|$(p \rightarrow q) \rightarrow (p \rightarrow q)$|(6), (7), MP|
+|(9)|$((p \rightarrow q) \rightarrow (p \rightarrow q)) \rightarrow (((p \rightarrow q) \rightarrow p) \rightarrow ((p \rightarrow q) \rightarrow q))$|L2|
+|(10)|$((p \rightarrow q) \rightarrow p) \rightarrow ((p \rightarrow q) \rightarrow q)$|(8), (9), MP|
+|(11)|$(p \rightarrow q) \rightarrow q$|(3), (10), MP|

@@ -1,5 +1,6 @@
 import re
 import regex
+import os
 
 
 def find_and_remove_substring(input_string, substring):
@@ -165,6 +166,7 @@ def insert_statement(proof_set, indexs, rules, label, expression, pos, need_back
         rules = backfill_index(str(len(indexs)), rules, pos)
     rules.insert(pos, label)
     proof_set.insert(pos, expression)
+    print(expression)
     return
 
 
@@ -240,8 +242,10 @@ def add_to_proof_set(proof_set, A, known_proof, alpha, Gamma, tuple_C, indexs, r
         # proof_set.insert(3, temp5)
         # proof_set.insert(4, temp6)
     else:
-        temp1, temp2 = extract_expression_by_arrow(
-            known_proof[tuple_C[0]-1])
+        temp1, temp2 = None, None
+        if is_arrow_concat(known_proof[tuple_C[0]-1]):
+            temp1, temp2 = extract_expression_by_arrow(
+                known_proof[tuple_C[0]-1])
         if is_arrow_concat(known_proof[tuple_C[0]-1]) and temp2 == tuple_C[1]:
             temp_tuple2 = (tuple_C[0]-1, known_proof[tuple_C[0]-1])
             temp_tuple1 = ()
@@ -299,13 +303,13 @@ def main():
     '''主函数'''
 
     '''所有已知条件'''
-    Gamma = input("请输入已知集合Gama，没有请回车: ").split()
+    Gamma = input("请输入原已知集合Gama，没有请回车: ").split()
     known_proof = input("请输入演绎定理证明: ").split()
-    gamma = input("请输入待证公式gama: ")
+    gamma = input("请输入原待证公式gama: ")
     # 公理集
     Alpha = ["A->(B->A)", "(A->(B->C))->((A->B)->(A->C))",
              "(~A->~B)->(B->A)"]
-    axiom_input = input("请输入要额外添加的定理，没有请回车: ").split()
+    axiom_input = input("请输入要额外添加的定理用于简化证明，没有请回车: ").split()
     if axiom_input:
         Alpha.extend(axiom_input)
     # 公理集的模式匹配集合
@@ -328,21 +332,35 @@ def main():
     for i in range(len(rules)):
         if 'MP' in rules[i]:
             nums = re.findall(r'\d+', rules[i])
+            # 先将原 rule 中每个数字前加入 %
             for num in nums:
-                rules[i] = re.sub(r'{}'.format(num), r'{}'.format(
+                rules[i] = re.sub(r'{}'.format(
+                    num), r'%{}'.format(num), rules[i])
+            for num in nums:
+                rules[i] = re.sub(r'%{}'.format(num), r'{}'.format(
                     indexs[int(num)-1]), rules[i])
 
-    # 将公式中的 -> 替换为 &rightarrow;，优化 markdown 表格
-    # for i in range(len(proof_set)):
-    #     proof_set[i] = re.sub(r'->', r' &rightarrow; ', proof_set[i])
+    # 将公式中的 -> 替换为 /rightarrow，优化 markdown 表格
+    for i in range(len(proof_set)):
+        proof_set[i] = re.sub(r'->', r' \\rightarrow ', proof_set[i])
+
+    # 在公式两侧加 $$
+    for i in range(len(proof_set)):
+        proof_set[i] = "$" + proof_set[i] + "$"
+
+    # 将 ~ 替换为 /neg
+    for i in range(len(proof_set)):
+        proof_set[i] = re.sub(r'~', r' \\neg ', proof_set[i])
 
     # 生成 markdown 表格
-    with open("proof_set.txt", "w", encoding='utf-8') as file:
+    output_path = "./proof_set.txt"
+    with open(output_path, "w", encoding='utf-8') as file:
         file.write("|序号|公式|规则|\n")
         file.write("|---|---|---|\n")
         for i in range(len(proof_set)):
             file.write('|' + '({})'.format(i+1) + '|' +
                        proof_set[i] + '|' + rules[i] + '|' + "\n")
+    print(f"直接证明已经以 markdown 表格语法的形式生成在{output_path}中！")
 
 
 if __name__ == "__main__":

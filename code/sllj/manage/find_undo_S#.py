@@ -16,11 +16,11 @@ def process_xlsx_file(input_file, output_file, column_names):
                 # 找到该列某行为空值的索引
                 null_indexes = df[df[column_name].isnull()].index
                 # 选择学号和姓名列，并且筛选出空值行
-                result_df = df.loc[null_indexes, ['学号', '姓名']]
+                result_df = df.loc[null_indexes, ['学号']]
                 # 输出到txt文件
                 f.write(f"{column_name}\n")
                 for index, row in result_df.iterrows():
-                    f.write(f"{row['学号']} {row['姓名']}\n")
+                    f.write(f"{row['学号']}\n")
                 f.write('\n')
         print(f"已将文件 {input_file} 中空值行的学号和姓名输出到 {output_file}")
     except Exception as e:

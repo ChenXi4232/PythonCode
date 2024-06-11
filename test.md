@@ -1,11 +1,13 @@
 |序号|公式|规则|
 |---|---|---|
-|1|a &rightarrow; ((b &rightarrow; a) &rightarrow; a)|L1|
-|2|(a &rightarrow; ((b &rightarrow; a) &rightarrow; a)) &rightarrow; ((a &rightarrow; (b &rightarrow; a)) &rightarrow; (a &rightarrow; a))|L2|
-|3|(a &rightarrow; (b &rightarrow; a)) &rightarrow; (a &rightarrow; a)|(1), (2), MP|
-|4|a &rightarrow; (b &rightarrow; a)|L1|
-|5|a &rightarrow; a|(3), (4), MP|
-|6|a &rightarrow; (a &rightarrow; b)|假定|
-|7|(a &rightarrow; (a &rightarrow; b)) &rightarrow; ((a &rightarrow; a) &rightarrow; (a &rightarrow; b))|L2|
-|8|(a &rightarrow; a) &rightarrow; (a &rightarrow; b)|(6), (7), MP|
-|9|a &rightarrow; b|(5), (8), MP|
+|(1)|$q \rightarrow (p \rightarrow q)$|L1|
+|(2)|$(q \rightarrow (p \rightarrow q)) \rightarrow (((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r))) \rightarrow (q \rightarrow (p \rightarrow q)))$|L1|
+|(3)|$((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r))) \rightarrow (q \rightarrow (p \rightarrow q))$|(1), (2), MP|
+|(4)|$((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r))) \rightarrow ((((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r))) \rightarrow ((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r)))) \rightarrow ((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r))))$|L1|
+|(5)|$(((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r))) \rightarrow ((((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r))) \rightarrow ((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r)))) \rightarrow ((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r))))) \rightarrow ((((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r))) \rightarrow (((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r))) \rightarrow ((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r))))) \rightarrow (((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r))) \rightarrow ((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r)))))$|L2|
+|(6)|$(((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r))) \rightarrow (((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r))) \rightarrow ((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r))))) \rightarrow (((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r))) \rightarrow ((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r))))$|(4), (5), MP|
+|(7)|$((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r))) \rightarrow (((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r))) \rightarrow ((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r))))$|L1|
+|(8)|$((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r))) \rightarrow ((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r)))$|(6), (7), MP|
+|(9)|$(((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r))) \rightarrow ((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r)))) \rightarrow ((((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r))) \rightarrow (q \rightarrow (p \rightarrow q))) \rightarrow (((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r))) \rightarrow (q \rightarrow (p \rightarrow r))))$|L2|
+|(10)|$(((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r))) \rightarrow (q \rightarrow (p \rightarrow q))) \rightarrow (((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r))) \rightarrow (q \rightarrow (p \rightarrow r)))$|(8), (9), MP|
+|(11)|$((q \rightarrow (p \rightarrow q)) \rightarrow (q \rightarrow (p \rightarrow r))) \rightarrow (q \rightarrow (p \rightarrow r))$|(3), (10), MP|
